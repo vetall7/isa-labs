@@ -1,15 +1,15 @@
 package org.example;
 
+
+import org.example.dto.MovieDto;
 import org.example.entities.Genre;
 import org.example.entities.Movie;
-import org.example.entities.MovieDto;
-import org.example.entities.MovieToDto;
+import org.example.functions.MovieToDto;
 
 import java.io.*;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -133,7 +133,7 @@ public class Main {
         // 7
         System.out.println("7");
 
-        ForkJoinPool customThreadPool = new ForkJoinPool(2);
+        ForkJoinPool customThreadPool = new ForkJoinPool(4);
 
         try {
             customThreadPool.submit(() -> {
@@ -141,7 +141,7 @@ public class Main {
                     genre.getMovies().parallelStream().forEach(movie -> {
                         try {
                             System.out.println(Thread.currentThread().getName() + " - " + movie);
-                            Thread.sleep(1000); // Simulate workload
+                            Thread.sleep(1000);
                         } catch (InterruptedException e) {
                             Thread.currentThread().interrupt();
                         }
@@ -152,14 +152,14 @@ public class Main {
             e.printStackTrace();
         } finally {
             customThreadPool.shutdown();
-            try {
-                if (!customThreadPool.awaitTermination(60, TimeUnit.SECONDS)) {
-                    customThreadPool.shutdownNow();
-                }
-            } catch (InterruptedException e) {
-                customThreadPool.shutdownNow();
-                Thread.currentThread().interrupt();
-            }
+//            try {
+//                if (!customThreadPool.awaitTermination(60, TimeUnit.SECONDS)) {
+//                    customThreadPool.shutdownNow();
+//                }
+//            } catch (InterruptedException e) {
+//                customThreadPool.shutdownNow();
+//                Thread.currentThread().interrupt();
+//            }
         }
 
     }
