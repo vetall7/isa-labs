@@ -1,4 +1,4 @@
-package org.example.dto;
+package org.example.moviesservice.entites.dto;
 
 import lombok.*;
 

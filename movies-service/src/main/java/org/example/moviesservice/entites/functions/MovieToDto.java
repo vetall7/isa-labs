@@ -1,7 +1,7 @@
-package org.example.functions;
+package org.example.moviesservice.entites.functions;
 
-import org.example.dto.MovieDto;
-import org.example.entities.Movie;
+import org.example.moviesservice.entites.dto.MovieDto;
+import org.example.moviesservice.entites.Movie;
 
 import java.util.function.Function;
 

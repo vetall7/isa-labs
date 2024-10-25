@@ -1,18 +1,24 @@
-package org.example.entities;
+package org.example.moviesservice.entites;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.*;
 
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.UUID;
 
-@EqualsAndHashCode
 @Getter
 @Setter
-@Builder
 @ToString
+@EqualsAndHashCode
+@NoArgsConstructor
+@Entity
+@Table(name = "movies")
 public class Movie implements Comparable<Movie>, Serializable {
+    @Id
     private UUID id;
 
     private String title;
