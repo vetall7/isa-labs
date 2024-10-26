@@ -1,10 +1,9 @@
-package org.example.moviesservice.entites;
+package org.example.moviesservice.entites.Movie;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+import org.example.moviesservice.entites.Genre.Genre;
 
 import java.io.Serializable;
 import java.util.Comparator;
@@ -15,6 +14,8 @@ import java.util.UUID;
 @ToString
 @EqualsAndHashCode
 @NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 @Entity
 @Table(name = "movies")
 public class Movie implements Comparable<Movie>, Serializable {
@@ -25,12 +26,16 @@ public class Movie implements Comparable<Movie>, Serializable {
 
     private String description;
 
+    @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(name = "release_year")
     private int year;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
+    @ManyToOne
+    @JoinColumn(name = "genre_name")
     private Genre genre;
 
     @Override
