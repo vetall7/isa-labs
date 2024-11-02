@@ -39,6 +39,14 @@ public class MovieDefaultService implements MovieService {
     }
 
     @Override
+    public Movie create(Movie movie, String genreName) throws IllegalArgumentException {
+        if (genreRepository.findById(genreName).isEmpty()) {
+            throw new IllegalArgumentException("Genre with name " + genreName + " does not exist");
+        }
+        return movieRepository.save(movie);
+    }
+
+    @Override
     public Movie create(Movie movie) {
         return movieRepository.save(movie);
     }

@@ -27,11 +27,13 @@ public class ApplicationCommand implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         String command;
+        main_loop:
         while (true) {
             command = scanner.next();
+            scanner.skip("\n");
             switch (command) {
                 case "exit":
-                    break;
+                    break main_loop;
                 case "help":
                     System.out.println("Available commands:");
                     System.out.println("exit - to exit the program");
@@ -40,6 +42,8 @@ public class ApplicationCommand implements CommandLineRunner {
                     System.out.println("genres - to display all genres");
                     System.out.println("add-movie - to add a movie");
                     System.out.println("add-genre - to add a genre");
+                    System.out.println("delete-movie - to delete a movie");
+                    System.out.println("find-by-genre - to find movies by genre");
                     break;
                 case "movies":
                     movieService.findAll().forEach(System.out::println);
@@ -50,40 +54,49 @@ public class ApplicationCommand implements CommandLineRunner {
                 case "add-movie":
                     UUID id = UUID.randomUUID();
                     System.out.println("Enter title:");
-                    String title = scanner.next();
+                    String title = scanner.nextLine();
                     System.out.println("Enter genre:");
-                    String genre_name = scanner.next();
+                    String genre_name = scanner.nextLine();
                     System.out.println("Enter year:");
                     int year = scanner.nextInt();
+                    scanner.skip("\n");
                     System.out.println("Enter description:");
-                    String description = scanner.next();
+                    String description = scanner.nextLine();
                     try {
                         Movie movie = Movie.builder()
-                                .id(id)
                                 .title(title)
-                                .genre(genreService.findByName(genre_name).orElseThrow())
+                                .id(id)
                                 .year(year)
                                 .description(description)
                                 .build();
-                        movieService.create(movie);
+                        movieService.create(movie, genre_name);
+                        System.out.println("Movie added successfully");
                     } catch (Exception e) {
-                        System.out.println("Genre not found");
+                        System.out.println("Error: " + e.getMessage());
                     }
                     break;
                 case "add-genre":
                     System.out.println("Enter name:");
-                    String name = scanner.next();
+                    String name = scanner.nextLine();
                     System.out.println("Enter description:");
-                    String genreDescription = scanner.next();
+                    String genreDescription = scanner.nextLine();
                     Genre genre = Genre.builder()
                             .name(name)
                             .description(genreDescription)
                             .build();
                     genreService.create(genre);
+                    System.out.println("Genre added successfully");
                     break;
                 case "delete-movie":
-                    UUID movieId = UUID.fromString(scanner.next());
-                    movieService.delete(movieId);
+                    System.out.println("Enter movie id:");
+                    String movieId = scanner.next();
+                    movieService.delete(UUID.fromString(movieId));
+                    System.out.println("Movie deleted successfully");
+                    break;
+                case "find-by-genre":
+                    System.out.println("Enter genre name:");
+                    String genreName = scanner.next();
+                    movieService.findAllByGenreName(genreName).forEach(System.out::println);
                     break;
                 default:
                     System.out.println("Unknown command. Type 'help' to display available commands.");

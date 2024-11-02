@@ -13,6 +13,8 @@ public interface MovieService {
 
     List<Movie> findAllByGenreName(String genreName);
 
+    Movie create(Movie movie, String genreName) throws IllegalArgumentException;
+
     Movie create(Movie movie);
 
     Movie update(Movie movie);
