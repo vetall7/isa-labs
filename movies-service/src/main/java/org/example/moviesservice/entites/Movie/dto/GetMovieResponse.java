@@ -2,8 +2,6 @@ package org.example.moviesservice.entites.Movie.dto;
 
 import lombok.*;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 @Builder

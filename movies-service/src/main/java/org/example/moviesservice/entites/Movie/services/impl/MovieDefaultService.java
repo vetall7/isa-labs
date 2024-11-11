@@ -34,8 +34,9 @@ public class MovieDefaultService implements MovieService {
     }
 
     @Override
-    public List<Movie> findAllByGenreName(String genreName) {
-        return movieRepository.findAllByGenreName(genreName);
+    public Optional<List<Movie>> findAllByGenreId(String genreName) {
+        return genreRepository.findById(genreName)
+                .map(genre -> movieRepository.findAllByGenreName(genreName));
     }
 
     @Override

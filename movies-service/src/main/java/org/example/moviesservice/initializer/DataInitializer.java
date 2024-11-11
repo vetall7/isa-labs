@@ -36,7 +36,7 @@ public class DataInitializer implements InitializingBean {
         genreService.create(genre4);
         genreService.create(genre5);
 
-        Movie movie1 = Movie.builder().id(UUID.randomUUID()).title("Action Movie 1").description("An action movie").imageUrl("url1").year(2021).genre(genre1).build();
+        Movie movie1 = Movie.builder().id(UUID.fromString("899bcc9b-6679-4e4d-bf01-e36b3491a775")).title("Action Movie 1").description("An action movie").imageUrl("url1").year(2021).genre(genre1).build();
         Movie movie2 = Movie.builder().id(UUID.randomUUID()).title("Action Movie 2").description("An action movie").imageUrl("url2").year(2022).genre(genre1).build();
         Movie movie3 = Movie.builder().id(UUID.randomUUID()).title("Comedy Movie 1").description("A comedy movie").imageUrl("url3").year(2021).genre(genre2).build();
         Movie movie4 = Movie.builder().id(UUID.randomUUID()).title("Comedy Movie 2").description("A comedy movie").imageUrl("url4").year(2022).genre(genre2).build();

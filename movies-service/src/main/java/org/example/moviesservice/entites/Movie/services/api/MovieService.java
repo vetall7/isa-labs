@@ -11,7 +11,7 @@ public interface MovieService {
 
     List<Movie> findAll();
 
-    List<Movie> findAllByGenreName(String genreName);
+    Optional<List<Movie>> findAllByGenreId(String genreName);
 
     Movie create(Movie movie, String genreName) throws IllegalArgumentException;
 
