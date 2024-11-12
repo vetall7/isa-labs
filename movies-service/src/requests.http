@@ -22,9 +22,24 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "title": "The Lord of the Rings: The Fellowship of the Ring",
   "imageUrl": "https://www.imdb.com/title/tt0120737/mediaviewer/rm4269474560",
   "year": 2001,
-  "genreName": "Action",
+  "genreName": "Actiodn",
   "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
 }
 
 ### Delete movie
 DELETE http://localhost:8080/api/movies/899bcc9b-6679-4e4d-bf01-e36b3491a775
+
+### Get all genres
+GET http://localhost:8080/api/genres
+
+### Get genre by name
+GET http://localhost:8080/api/genre/Action
+
+### Get genre by name, not existing
+GET http://localhost:8080/api/genre/abc
+
+### Delete genre
+DELETE http://localhost:8080/api/genre/Action
+
+### Delete genre, not existing
+DELETE http://localhost:8080/api/genre/abc
