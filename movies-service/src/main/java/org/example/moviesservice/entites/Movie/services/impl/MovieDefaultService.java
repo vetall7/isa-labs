@@ -2,6 +2,7 @@ package org.example.moviesservice.entites.Movie.services.impl;
 
 import org.example.moviesservice.entites.Genre.repositories.api.GenreRepository;
 import org.example.moviesservice.entites.Movie.Movie;
+import org.example.moviesservice.entites.Movie.dto.PatchMovieRequest;
 import org.example.moviesservice.entites.Movie.repositories.api.MovieRepository;
 import org.example.moviesservice.entites.Movie.services.api.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,23 +41,19 @@ public class MovieDefaultService implements MovieService {
     }
 
     @Override
-    public Movie create(Movie movie, String genreName) {
-        return genreRepository.findById(genreName)
-                .map(genre -> {
-                    movie.setGenre(genre);
-                    return movieRepository.save(movie);
-                })
-                .orElseThrow(() -> new IllegalArgumentException("Genre with name " + genreName + " does not exist"));
+    public void create(Movie movie) {
+        genreRepository.findById(movie.getGenre().getName())
+                .ifPresentOrElse(
+                        genre -> movieRepository.save(movie),
+                        () -> {
+                            throw new RuntimeException("Genre does not exist");
+                        }
+                );
     }
 
     @Override
-    public Movie create(Movie movie) {
-        return movieRepository.save(movie);
-    }
-
-    @Override
-    public Movie update(Movie movie) {
-        return movieRepository.save(movie);
+    public void update(Movie movie) {
+        movieRepository.save(movie);
     }
 
     @Override

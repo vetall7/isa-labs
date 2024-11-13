@@ -1,6 +1,7 @@
 package org.example.moviesservice.entites.Movie.services.api;
 
 import org.example.moviesservice.entites.Movie.Movie;
+import org.example.moviesservice.entites.Movie.dto.PatchMovieRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,11 +14,9 @@ public interface MovieService {
 
     Optional<List<Movie>> findAllByGenreId(String genreName);
 
-    Movie create(Movie movie, String genreName);
+    void create(Movie movie);
 
-    Movie create(Movie movie);
-
-    Movie update(Movie movie);
+    void update(Movie movie);
 
     void delete(UUID id);
 }

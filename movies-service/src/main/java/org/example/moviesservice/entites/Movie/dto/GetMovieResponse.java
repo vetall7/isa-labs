@@ -10,7 +10,9 @@ import lombok.*;
 public class GetMovieResponse {
     private String title;
 
-    private int year;
+    private String description;
+
+    private String imageUrl;
 
     private String genreName;
 }

@@ -29,13 +29,13 @@ public class GenreDefaultService implements GenreService{
     }
 
     @Override
-    public Genre create(Genre genre) {
-        return genreRepository.save(genre);
+    public void create(Genre genre) {
+        genreRepository.save(genre);
     }
 
     @Override
-    public Genre update(Genre genre) {
-        return genreRepository.save(genre);
+    public void update(Genre genre) {
+        genreRepository.save(genre);
     }
 
     @Override

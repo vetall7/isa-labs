@@ -2,6 +2,7 @@ package org.example.moviesservice.entites.Movie.controllers.api;
 
 import org.example.moviesservice.entites.Movie.dto.GetMovieResponse;
 import org.example.moviesservice.entites.Movie.dto.GetMoviesResponse;
+import org.example.moviesservice.entites.Movie.dto.PatchMovieRequest;
 import org.example.moviesservice.entites.Movie.dto.PutMovieRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
@@ -45,5 +46,14 @@ public interface MovieController {
     void deleteMovie(
             @PathVariable("id")
             UUID movieId
+    );
+
+    @PatchMapping("/api/movies/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void updateMovie(
+            @PathVariable("id")
+            UUID movieId,
+            @RequestBody
+            PatchMovieRequest fieldsToUpdate
     );
 }

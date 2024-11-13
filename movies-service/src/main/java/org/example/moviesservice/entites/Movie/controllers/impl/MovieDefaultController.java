@@ -3,6 +3,7 @@ package org.example.moviesservice.entites.Movie.controllers.impl;
 import org.example.moviesservice.entites.Movie.controllers.api.MovieController;
 import org.example.moviesservice.entites.Movie.dto.GetMovieResponse;
 import org.example.moviesservice.entites.Movie.dto.GetMoviesResponse;
+import org.example.moviesservice.entites.Movie.dto.PatchMovieRequest;
 import org.example.moviesservice.entites.Movie.dto.PutMovieRequest;
 import org.example.moviesservice.entites.Movie.functions.MovieToResponseFunction;
 import org.example.moviesservice.entites.Movie.functions.MoviesToResponseFunction;
@@ -56,7 +57,11 @@ public class MovieDefaultController implements MovieController {
 
     @Override
     public void putMovie(UUID movieId, PutMovieRequest request){
-        movieService.create(requestToMovieFunction.apply(movieId, request));
+        try {
+            movieService.create(requestToMovieFunction.apply(movieId, request));
+        } catch (RuntimeException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Genre not found"); // why this message is not visible
+        }
     }
 
     @Override
@@ -64,6 +69,17 @@ public class MovieDefaultController implements MovieController {
         movieService.findById(movieId)
                 .ifPresentOrElse(
                         movie -> movieService.delete(movieId),
+                        () -> {
+                            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+                        }
+                );
+    }
+
+    @Override
+    public void updateMovie(UUID movieId, PatchMovieRequest fieldsToUpdate){
+        movieService.findById(movieId)
+                .ifPresentOrElse(
+                        movie -> movieService.update(updateMovieRequestFunction.apply(movie, fieldsToUpdate)),
                         () -> {
                             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
                         }

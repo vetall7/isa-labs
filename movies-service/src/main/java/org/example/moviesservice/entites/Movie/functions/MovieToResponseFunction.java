@@ -13,7 +13,8 @@ public class MovieToResponseFunction implements Function<Movie, GetMovieResponse
     public GetMovieResponse apply(Movie movie) {
         return GetMovieResponse.builder()
                 .title(movie.getTitle())
-                .year(movie.getYear())
+                .description(movie.getDescription())
+                .imageUrl(movie.getImageUrl())
                 .genreName(movie.getGenre().getName())
                 .build();
     }

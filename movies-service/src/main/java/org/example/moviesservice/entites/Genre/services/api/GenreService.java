@@ -10,9 +10,9 @@ public interface GenreService {
 
     List<Genre> findAll();
 
-    Genre create(Genre genre);
+    void create(Genre genre);
 
-    Genre update(Genre genre);
+    void update(Genre genre);
 
     void delete(String name);
 }
