@@ -67,7 +67,13 @@ public class GenreDefaultController implements GenreController {
 
     @Override
     public void createGenre(String genreId, PutGenreRequest putGenreRequest){
-        genreService.create(putGenreRequestFunction.apply(genreId, putGenreRequest));
+        genreService.findByName(genreId)
+                .ifPresentOrElse(
+                        genre -> {
+                            throw new ResponseStatusException(HttpStatus.CONFLICT);
+                        },
+                        () -> genreService.create(putGenreRequestFunction.apply(genreId, putGenreRequest))
+                );
     }
 
     @Override

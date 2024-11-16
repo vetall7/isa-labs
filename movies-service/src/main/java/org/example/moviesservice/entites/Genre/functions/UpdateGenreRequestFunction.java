@@ -14,6 +14,7 @@ public class UpdateGenreRequestFunction implements BiFunction<Genre, PatchGenreR
         return Genre.builder()
                 .name(genre.getName())
                 .description(request.getDescription())
+                .movies(genre.getMovies())
                 .build();
     }
 }
