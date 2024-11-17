@@ -1,0 +1,33 @@
+
+### Get all genres
+GET http://localhost:8082/api/genres
+
+### Get genre by name
+GET http://localhost:8082/api/genres/Action
+
+### Get genre by name, not existing
+GET http://localhost:8082/api/genres/abc
+
+### Delete genre
+DELETE http://localhost:8082/api/genres/Action
+
+### Delete genre, not existing
+DELETE http://localhost:8082/api/genres/abc
+
+### Create genre
+PUT http://localhost:8082/api/genres/NewGenre
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
+
+{
+  "description": "new genre description"
+}
+
+### Update genre
+PATCH http://localhost:8082/api/genres/NewGenre
+Content-Type: application/json
+Authorization: Basic a2V2aW46dXNlcnVzZXI=
+
+{
+  "description": "updated description"
+}

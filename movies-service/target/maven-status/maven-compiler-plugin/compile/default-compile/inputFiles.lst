@@ -1,0 +1,5 @@
+/home/vitalii/Studying/sem_5/aui/labs/movies-service/src/main/java/org/example/moviesservice/MoviesServiceApplication.java
+/home/vitalii/Studying/sem_5/aui/labs/movies-service/src/main/java/org/example/moviesservice/entites/Genre/Genre.java
+/home/vitalii/Studying/sem_5/aui/labs/movies-service/src/main/java/org/example/moviesservice/entites/Movie/Movie.java
+/home/vitalii/Studying/sem_5/aui/labs/movies-service/src/main/java/org/example/moviesservice/entites/Movie/dto/MovieDto.java
+/home/vitalii/Studying/sem_5/aui/labs/movies-service/src/main/java/org/example/moviesservice/entites/Movie/functions/MovieToDto.java

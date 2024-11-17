@@ -1,0 +1,6 @@
+org/example/moviesservice/entites/Movie/dto/MovieDto.class
+org/example/moviesservice/entites/Movie/Movie.class
+org/example/moviesservice/MoviesServiceApplication.class
+org/example/moviesservice/entites/Movie/functions/MovieToDto.class
+org/example/moviesservice/entites/Movie/dto/MovieDto$MovieDtoBuilder.class
+org/example/moviesservice/entites/Genre/Genre.class
