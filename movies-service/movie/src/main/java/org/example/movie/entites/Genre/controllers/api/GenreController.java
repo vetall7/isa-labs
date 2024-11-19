@@ -10,10 +10,7 @@ public interface GenreController {
     @ResponseStatus(HttpStatus.CREATED)
     void createGenre(
             @PathVariable
-            String genreId,
-            @RequestBody
-            PutGenreRequest
-            putGenreRequest
+            String genreId
     );
 
 

@@ -5,12 +5,13 @@ import org.example.movie.entites.Genre.dto.PutGenreRequest;
 import org.springframework.stereotype.Component;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 @Component
-public class PutGenreRequestFunction implements BiFunction<String, PutGenreRequest, Genre> {
+public class PutGenreRequestFunction implements Function<String, Genre> {
 
     @Override
-    public Genre apply(String genreName, PutGenreRequest request) {
+    public Genre apply(String genreName) {
         return Genre.builder()
                 .name(genreName)
                 .build();

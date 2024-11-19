@@ -72,7 +72,7 @@ public class GenreDefaultController implements GenreController {
                         genre -> {
                             throw new ResponseStatusException(HttpStatus.CONFLICT);
                         },
-                        () -> genreService.create(putGenreRequestFunction.apply(genreId, putGenreRequest))
+                        () -> genreService.create(putGenreRequestFunction.apply(genreId, putGenreRequest), true)
                 );
     }
 

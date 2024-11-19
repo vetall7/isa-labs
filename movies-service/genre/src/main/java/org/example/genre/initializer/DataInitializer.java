@@ -26,11 +26,10 @@ public class DataInitializer implements InitializingBean {
         Genre genre4 = Genre.builder().name("Horror").description("Horror movies").build();
         Genre genre5 = Genre.builder().name("Sci-Fi").description("Science Fiction movies").build();
 
-        genreService.create(genre1);
-        genreService.create(genre2);
-        genreService.create(genre3);
-        genreService.create(genre4);
-        genreService.create(genre5);
-
+        genreService.create(genre1, false);
+        genreService.create(genre2, false);
+        genreService.create(genre3, false);
+        genreService.create(genre4, false);
+        genreService.create(genre5, false);
     }
 }

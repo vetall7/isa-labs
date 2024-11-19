@@ -10,7 +10,7 @@ public interface GenreService {
 
     List<Genre> findAll();
 
-    void create(Genre genre);
+    void create(Genre genre, Boolean isReported);
 
     void update(Genre genre);
 
