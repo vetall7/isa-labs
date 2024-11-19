@@ -15,18 +15,16 @@ DELETE http://localhost:8082/api/genres/Action
 DELETE http://localhost:8082/api/genres/abc
 
 ### Create genre
-PUT http://localhost:8082/api/genres/acd
+PUT http://localhost:8082/api/genres/avf
 Content-Type: application/json
-Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
 {
   "description": "new genre description"
 }
 
 ### Update genre
-PATCH http://localhost:8082/api/genres/NewGenre
+PATCH http://localhost:8082/api/genres/avf
 Content-Type: application/json
-Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
 {
   "description": "updated description"

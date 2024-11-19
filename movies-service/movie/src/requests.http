@@ -8,10 +8,10 @@ GET http://localhost:8081/api/movies/899bcc9b-6679-4e4d-bf01-e36b3491a775
 GET http://localhost:8081/api/movies/6bcf71ad-3aa6-474b-858e-2027b5ce5fe
 
 ### Get genre movies
-GET http://localhost:8081/api/genres/Action/movies
+GET http://localhost:8081/api/genres/acd/movies
 
 ### Get genre movies, genre does not exist
-GET  http://localhost:8081/api/genres/abcd/movies
+GET  http://localhost:8081/api/genres/avf/movies
 
 ### Create new movie
 PUT http://localhost:8081/api/movies/999bcc9b-6679-4e4d-bf01-e36b3491a775
@@ -22,7 +22,7 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
   "title": "The Lord of the Rings: The Fellowship of the Ring",
   "imageUrl": "https://www.imdb.com/title/tt0120737/mediaviewer/rm4269474560",
   "year": 2001,
-  "genreName": "acd",
+  "genreName": "avf",
   "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
 }
 

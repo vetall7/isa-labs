@@ -21,5 +21,5 @@ public class ProfessionEventRestRepository implements GenreEventRepository {
     }
 
     @Override
-    public void save(String name) { this.restTemplate.put("/api/genres/{name}", name, String.class); }
+    public void save(String name) { this.restTemplate.put("/api/genres/{name}", null, name); }
 }

@@ -38,6 +38,7 @@ public class GenreDefaultController implements GenreController {
 
     @Override
     public void createGenre(String genreId){
+        System.out.println("hkljh");
         genreService.findByName(genreId)
                 .ifPresentOrElse(
                         genre -> {
