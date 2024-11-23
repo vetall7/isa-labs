@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="movie" />
         <module name="genre" />
+        <module name="gateway" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -26,6 +27,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="gateway" options="-parameters" />
       <module name="genre" options="-parameters" />
       <module name="movie" options="-parameters" />
       <module name="movies" options="-parameters" />

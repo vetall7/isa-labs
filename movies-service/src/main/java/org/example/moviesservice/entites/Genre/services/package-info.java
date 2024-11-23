@@ -1,1 +1,0 @@
-package org.example.moviesservice.entites.Genre.services;

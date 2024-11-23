@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/movies/pom.xml" />
         <option value="$PROJECT_DIR$/movie/pom.xml" />
         <option value="$PROJECT_DIR$/genre/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
