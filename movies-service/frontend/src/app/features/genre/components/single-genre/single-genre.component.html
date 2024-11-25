@@ -1,1 +1,7 @@
-<p>single-genre works!</p>
+@if(genre){
+  <div class="wrapper">
+    <h3>{{genre.name}}</h3>
+    <button (click)="onDelete()">delete</button>
+    <button [routerLink]="['edit', genre.name]">edit</button>
+  </div>
+}

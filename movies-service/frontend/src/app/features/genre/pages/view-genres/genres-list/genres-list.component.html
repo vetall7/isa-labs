@@ -1,6 +1,10 @@
-asdfsdafasdf
+@let genres = genres$ | async;
 @if(genres){
-  @for (genre of genres.genres; track genre){
-    <h1>{{genre.name}}</h1>
+  @for (genre of genres.genres; track genre.name){
+    <app-single-genre [genre]="genre"></app-single-genre>
   }
 }
+@else{
+  <h1>loading...</h1>
+}
+<button routerLink="create">create genre</button>

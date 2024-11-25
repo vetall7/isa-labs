@@ -1,0 +1,22 @@
+<form [formGroup]="genreForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Name:</label>
+    <input id="name" formControlName="name"/>
+  </div>
+  <div>
+    <label for="description">Description:</label>
+    <textarea id="description" formControlName="description"></textarea>
+    @if (genreForm.get('description')?.invalid && genreForm.get('description')?.touched){
+    <div>
+      @if (genreForm.get('description')?.errors?.['required']){
+        <small>Description is required.</small>}
+      @if (genreForm.get('description')?.errors?.['minlength']){
+      <small>
+        Description must be at least 3 characters long.
+      </small>
+      }
+    </div>
+    }
+  </div>
+  <button type="submit" [disabled]="genreForm.invalid">Save</button>
+</form>
