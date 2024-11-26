@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GenreService} from '@genre/services';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {DetailedGenre} from '@genre/models/DetailedGenre.model';
+import {DetailedGenre} from '@genre/models';
 
 @Component({
   selector: 'app-edit-genre',

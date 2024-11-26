@@ -15,4 +15,6 @@ public class GetMovieResponse {
     private String imageUrl;
 
     private String genreName;
+
+    private int year;
 }

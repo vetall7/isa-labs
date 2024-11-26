@@ -3,7 +3,7 @@ import {GenreService} from '@genre/services';
 import {SingleGenreComponent} from '@genre/components/single-genre/single-genre.component';
 import {AsyncPipe} from '@angular/common';
 import {Observable} from 'rxjs';
-import {Genres} from '@genre/models/genres.model';
+import {Genres} from '@genre/models';
 import {RouterLink} from '@angular/router';
 
 @Component({

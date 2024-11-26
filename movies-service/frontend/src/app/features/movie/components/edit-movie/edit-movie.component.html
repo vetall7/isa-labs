@@ -1,0 +1,23 @@
+<form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="title">Title</label>
+    <input id="title" formControlName="title" type="text" />
+  </div>
+  <div>
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description"></textarea>
+  </div>
+  <div>
+    <label for="year">Year</label>
+    <input id="year" formControlName="year" type="number" />
+  </div>
+  <div>
+    <label for="imageUrl">Image URL</label>
+    <input id="imageUrl" formControlName="imageUrl" type="text" />
+  </div>
+  <div>
+    <label for="genreName">Genre</label>
+    <input id="genreName" formControlName="genreName" type="text" />
+  </div>
+  <button type="submit" [disabled]="movieForm.invalid">Submit</button>
+</form>

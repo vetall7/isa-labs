@@ -1,6 +1,6 @@
 @if(genre){
   <div class="wrapper">
-    <h3>{{genre.name}}</h3>
+    <a [routerLink]="genre.name">{{genre.name}}</a>
     <button (click)="onDelete()">delete</button>
     <button [routerLink]="['edit', genre.name]">edit</button>
   </div>

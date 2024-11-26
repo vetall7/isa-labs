@@ -1,9 +1,8 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, tap} from 'rxjs';
-import {Genres} from '../models/genres.model';
-import {Genre} from '@genre/models/genre.model';
-import {DetailedGenre} from '@genre/models/DetailedGenre.model';
+import {Genres, Genre, DetailedGenre, Movies} from '@genre/models';
+import {GenreWithMovies} from '@genre/models/GenreWithMovies.model';
 
 @Injectable({ providedIn: 'root' })
 export class GenreService {
@@ -16,7 +15,6 @@ export class GenreService {
     return this.http.get<Genres>('/api/genres').pipe(
       tap((genres) => {
         this.genresSubject.next(genres);
-        console.log(this.genresSubject.getValue());
       })
     );
   }
@@ -25,7 +23,6 @@ export class GenreService {
     return this.http.delete('/api/genres/' + genre.name).pipe(
       tap(() => {
         const currentGenres = this.genresSubject.getValue();
-        console.log(currentGenres);
         if (currentGenres) {
           const updatedGenres = currentGenres.genres.filter((g) => g.name !== genre.name);
           this.genresSubject.next({ genres: updatedGenres });
@@ -35,7 +32,7 @@ export class GenreService {
   }
 
   public createGenre(genre: DetailedGenre): Observable<any>{
-    return this.http.put('api/genres/' + genre.name, genre);
+    return this.http.put('/api/genres/' + genre.name, {description: genre.description});
   }
 
   public getGenreDetails(genreId: String): Observable<DetailedGenre> {
@@ -43,7 +40,14 @@ export class GenreService {
   }
 
   public updateGenre(genre: DetailedGenre): Observable<any> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.http.patch('api/genres/' + genre.name, genre.description, {headers});
+    return this.http.patch('/api/genres/' + genre.name, {description: genre.description});
+  }
+
+  public getGenreMovies(genreId: String): Observable<Movies> {
+    return this.http.get<Movies>('/api/genres/' + genreId + "/movies");
+  }
+
+  public deleteMovie(movieId: String): Observable<any>{
+    return this.http.delete('api/movies/' + movieId);
   }
 }

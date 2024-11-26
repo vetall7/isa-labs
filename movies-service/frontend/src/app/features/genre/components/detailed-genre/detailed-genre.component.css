@@ -1,0 +1,8 @@
+.movies-list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.movie-item {
+  margin-bottom: 8px;
+}

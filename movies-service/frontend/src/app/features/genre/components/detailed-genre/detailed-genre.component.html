@@ -1,0 +1,20 @@
+@let details = genreWithMovies.detailedGenre;
+@let movies = genreWithMovies.movies;
+
+@if (details){
+  <h1>{{details.name}}</h1>
+  <h3>{{details.description}}</h3>
+}
+
+@if (movies) {
+  <ul class="movies-list">
+    @for (movie of movies.movies; track $index) {
+      <li class="movie-item"><a [routerLink]="['movies', movie.id]">{{ movie.title }}</a>
+        <button (click)="onDeleteMovie(movie.id)">delete</button>
+        <button [routerLink]="['movies', 'edit', movie.id]">edit</button>
+      </li>
+    }
+  </ul>
+}
+
+<button [routerLink]="'movies/create'">Add Movie</button>

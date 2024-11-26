@@ -1,8 +1,10 @@
 import {Component, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {GenreService} from '@genre/services';
-import {DetailedGenre} from '@genre/models/DetailedGenre.model';
+import {DetailedGenre} from '@genre/models';
 import {Router} from '@angular/router';
+import {catchError, EMPTY} from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-genre',
@@ -31,8 +33,20 @@ export class CreateGenreComponent {
           name: name,
           description: description
         }
-        this.genreService.createGenre(newGenre).subscribe(
-          () => this.router.navigate(['/genres'])
+        this.genreService.createGenre(newGenre).
+        pipe(
+          catchError((error) => {
+              if (error instanceof HttpErrorResponse){
+                if (error.status == 409){
+                  console.log('Conflict: Genre already exists');
+                }
+              }
+              return EMPTY;
+          })
+        )
+          .subscribe( () => {
+                this.router.navigate(['/genres']);
+            }
         );
       }
     }

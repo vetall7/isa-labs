@@ -1,5 +1,5 @@
 import {Component, inject, Input} from '@angular/core';
-import {Genre} from '@genre/models/genre.model';
+import {Genre} from '@genre/models';
 import {GenreService} from '@genre/services';
 import {RouterLink} from '@angular/router';
 
