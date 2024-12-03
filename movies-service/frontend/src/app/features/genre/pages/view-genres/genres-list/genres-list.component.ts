@@ -1,10 +1,9 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnInit, Signal} from '@angular/core';
 import {GenreService} from '@genre/services';
 import {SingleGenreComponent} from '@genre/components/single-genre/single-genre.component';
 import {AsyncPipe} from '@angular/common';
-import {Observable} from 'rxjs';
-import {Genres} from '@genre/models';
 import {RouterLink} from '@angular/router';
+import {Genres} from '@genre/models';
 
 @Component({
   selector: 'app-genres-list',
@@ -16,7 +15,7 @@ import {RouterLink} from '@angular/router';
 export class GenresListComponent implements OnInit {
   private readonly genreService = inject(GenreService);
 
-  protected genres$ : Observable<Genres | null> = this.genreService.genres$;
+  protected genresSig: Signal<Genres | null> = this.genreService.genresSig;
 
   public ngOnInit() : void {
     this.genreService.getGenres().subscribe();

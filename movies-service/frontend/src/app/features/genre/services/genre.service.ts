@@ -1,20 +1,20 @@
-import {inject, Injectable} from '@angular/core';
+import {computed, inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable, tap} from 'rxjs';
+import {Observable, tap} from 'rxjs';
 import {Genres, Genre, DetailedGenre, Movies} from '@genre/models';
-import {GenreWithMovies} from '@genre/models/GenreWithMovies.model';
 
 @Injectable({ providedIn: 'root' })
 export class GenreService {
   private readonly http = inject(HttpClient);
 
-  private readonly genresSubject = new BehaviorSubject<Genres | null>(null);
-  public readonly genres$ = this.genresSubject.asObservable();
+  private genresSignal= signal<Genres | null>(null);
+
+  public genresSig = computed(() => this.genresSignal());
 
   public getGenres(): Observable<Genres>{
     return this.http.get<Genres>('/api/genres').pipe(
       tap((genres) => {
-        this.genresSubject.next(genres);
+        this.genresSignal.set(genres);
       })
     );
   }
@@ -22,10 +22,10 @@ export class GenreService {
   public deleteGenre(genre: Genre): Observable<any> {
     return this.http.delete('/api/genres/' + genre.name).pipe(
       tap(() => {
-        const currentGenres = this.genresSubject.getValue();
+        const currentGenres = this.genresSignal();
         if (currentGenres) {
           const updatedGenres = currentGenres.genres.filter((g) => g.name !== genre.name);
-          this.genresSubject.next({ genres: updatedGenres });
+          this.genresSignal.set({ genres: updatedGenres });
         }
       })
     );
