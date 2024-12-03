@@ -7,7 +7,7 @@ import {Genres} from '@genre/models';
 
 @Component({
   selector: 'app-genres-list',
-  imports: [SingleGenreComponent, AsyncPipe, RouterLink],
+  imports: [SingleGenreComponent,  RouterLink],
   templateUrl: './genres-list.component.html',
   styleUrl: './genres-list.component.css',
   standalone: true
