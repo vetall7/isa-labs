@@ -1,3 +1,35 @@
 <nav>
   <a routerLink="/genres">Genres</a>
 </nav>
+
+<mat-toolbar color="primary">
+  <button mat-button [matMenuTriggerFor]="mainMenu">Categories</button>
+</mat-toolbar>
+
+<!-- Main Menu -->
+<mat-menu #mainMenu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="genresMenu">Genres</button>
+  <button mat-menu-item [matMenuTriggerFor]="actorsMenu">Actors</button>
+  <button mat-menu-item [matMenuTriggerFor]="moviesMenu">Movies</button>
+</mat-menu>
+
+<!-- Submenu: Genres -->
+<mat-menu #genresMenu="matMenu">
+  <button mat-menu-item>Action</button>
+  <button mat-menu-item>Drama</button>
+  <button mat-menu-item>Comedy</button>
+</mat-menu>
+
+<!-- Submenu: Actors -->
+<mat-menu #actorsMenu="matMenu">
+  <button mat-menu-item>Leonardo DiCaprio</button>
+  <button mat-menu-item>Scarlett Johansson</button>
+  <button mat-menu-item>Brad Pitt</button>
+</mat-menu>
+
+<!-- Submenu: Movies -->
+<mat-menu #moviesMenu="matMenu">
+  <button mat-menu-item>The Godfather</button>
+  <button mat-menu-item>The Dark Knight</button>
+  <button mat-menu-item>Inception</button>
+</mat-menu>

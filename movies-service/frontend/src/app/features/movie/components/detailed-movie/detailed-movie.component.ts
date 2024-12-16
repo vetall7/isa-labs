@@ -8,7 +8,7 @@ import {DetailedMovie} from '@movie/models/DetailedMovie.module';
   imports: [],
   standalone: true,
   templateUrl: './detailed-movie.component.html',
-  styleUrl: './detailed-movie.component.css'
+  styleUrl: './detailed-movie.component.scss'
 })
 export class DetailedMovieComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);

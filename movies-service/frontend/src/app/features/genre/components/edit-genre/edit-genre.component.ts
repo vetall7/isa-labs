@@ -9,7 +9,7 @@ import {DetailedGenre} from '@genre/models';
   imports: [ReactiveFormsModule],
   standalone: true,
   templateUrl: './edit-genre.component.html',
-  styleUrl: './edit-genre.component.css'
+  styleUrl: './edit-genre.component.scss'
 })
 export class EditGenreComponent implements OnInit {
   private route = inject(ActivatedRoute);

@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   imports: [ReactiveFormsModule],
   standalone: true,
   templateUrl: './create-genre.component.html',
-  styleUrl: './create-genre.component.css'
+  styleUrl: './create-genre.component.scss'
 })
 export class CreateGenreComponent {
   private readonly fb = inject(FormBuilder);

@@ -12,7 +12,7 @@ import {DetailedMovie} from '@movie/models/DetailedMovie.module';
   ],
   standalone: true,
   templateUrl: './edit-movie.component.html',
-  styleUrl: './edit-movie.component.css'
+  styleUrl: './edit-movie.component.scss'
 })
 export class EditMovieComponent implements OnInit {
   private readonly fb = inject(FormBuilder);

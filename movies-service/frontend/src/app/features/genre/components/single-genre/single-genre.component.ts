@@ -11,7 +11,7 @@ import {RouterLink} from '@angular/router';
   providers: [],
   standalone: true,
   templateUrl: './single-genre.component.html',
-  styleUrl: './single-genre.component.css'
+  styleUrl: './single-genre.component.scss'
 })
 export class SingleGenreComponent {
   @Input() genre: Genre | undefined;

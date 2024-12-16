@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   imports: [ReactiveFormsModule],
   standalone: true,
   templateUrl: './create-movie.component.html',
-  styleUrl: './create-movie.component.css'
+  styleUrl: './create-movie.component.scss'
 })
 export class CreateMovieComponent {
   private readonly fb = inject(FormBuilder);

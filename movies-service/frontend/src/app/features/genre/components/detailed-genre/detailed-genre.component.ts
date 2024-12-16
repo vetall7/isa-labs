@@ -11,7 +11,7 @@ import {switchMap, tap} from 'rxjs';
   ],
   standalone: true,
   templateUrl: './detailed-genre.component.html',
-  styleUrl: './detailed-genre.component.css'
+  styleUrl: './detailed-genre.component.scss'
 })
 export class DetailedGenreComponent implements OnInit {
   private readonly route = inject(ActivatedRoute);
