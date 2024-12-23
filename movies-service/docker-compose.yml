@@ -1,0 +1,75 @@
+services:
+  movies-gateway:
+    build: ./gateway
+    environment:
+        MOVIE_URL: "http://movies-movies:8080"
+        GENRE_URL: "http://movies-genres:8080"
+        GATEWAY_URL: "movies-gateway:8080"
+    restart: always
+
+  movies-movies:
+    build: ./movie
+    restart: always
+    environment:
+        SPRING_DATASOURCE_URL: "jdbc:postgresql://movies-database:5432/movies"
+        SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_MOVIES}
+        SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_MOVIES}
+
+  movies-genres:
+    build: ./genre
+    restart: always
+    environment:
+        MOVIE_URL: "http://movies-movies:8080"
+        SPRING_DATASOURCE_URL: "jdbc:postgresql://genres-database:5432/genres"
+        SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_GENRES}
+        SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_GENRES}
+
+  movies-frontend:
+    build: ./frontend
+    environment:
+      API_URL: http://movies-gateway:8080/api
+    restart: always
+    ports:
+      - "8080:80"
+
+  genres-database:
+    image: postgres:13.5
+    restart: always
+    environment:
+      POSTGRES_DB: "genres"
+      POSTGRES_USER: ${POSTGRES_USER_GENRES}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_GENRES}
+    volumes:
+      - genres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin-genres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  movies-database:
+    image: postgres:13.5
+    restart: always
+    environment:
+      POSTGRES_DB: "movies"
+      POSTGRES_USER: ${POSTGRES_USER_MOVIES}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_MOVIES}
+    volumes:
+        - movies-data:/var/lib/postgresql/data
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U admin-movies"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+
+volumes:
+  genres-data:
+    name: genres-data
+  movies-data:
+    name: movies-data

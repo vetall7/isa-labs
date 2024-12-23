@@ -7,9 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="movie" />
         <module name="genre" />
+        <module name="movie" />
         <module name="gateway" />
+        <module name="users" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -32,6 +33,7 @@
       <module name="movie" options="-parameters" />
       <module name="movies" options="-parameters" />
       <module name="movies-service" options="-parameters" />
+      <module name="users" options="-parameters" />
     </option>
   </component>
 </project>
