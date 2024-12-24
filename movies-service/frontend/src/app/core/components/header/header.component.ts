@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatMenu, MatMenuItem, MatMenuTrigger} from '@angular/material/menu';
-import {MatButton} from '@angular/material/button';
+import {MatButton, MatIconButton} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-header',
@@ -11,8 +14,12 @@ import {MatButton} from '@angular/material/button';
     MatToolbar,
     MatMenuTrigger,
     MatButton,
+    MatIconModule,
     MatMenuItem,
-    MatMenu
+    MatSlideToggleModule,
+    MatInputModule,
+    MatMenu,
+    MatIconButton
   ],
   standalone: true,
   templateUrl: './header.component.html',

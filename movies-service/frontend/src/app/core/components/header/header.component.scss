@@ -1,0 +1,42 @@
+.header-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.logo {
+  flex: 0 0 auto; /* Fixed size for logo */
+}
+
+.center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1; /* Allows the search bar to take up available space */
+  margin: 0 400px; /* Adds some spacing on the sides */
+}
+
+.theme-toggle {
+  flex: 0 0 auto; /* Fixed size for the theme toggle */
+}
+
+.search-bar{
+  width: 100%; /* Ensures the search bar fills the allocated space */
+  height: 60px;
+}
+
+
+.search-bar mat-form-field {
+  height: 20px !important;
+  width: 100%; /* Ensures the search bar fills the allocated space */
+}
+
+.menu{
+  margin-right: 30px;
+}
+
+
