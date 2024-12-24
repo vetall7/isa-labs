@@ -1,6 +1,5 @@
 package org.example.movie.entites.Genre.controllers.api;
 
-import org.example.movie.entites.Genre.dto.PutGenreRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

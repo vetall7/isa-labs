@@ -1,7 +1,6 @@
 package org.example.movie.entites.Genre.controllers.impl;
 
 import org.example.movie.entites.Genre.controllers.api.GenreController;
-import org.example.movie.entites.Genre.dto.PutGenreRequest;
 import org.example.movie.entites.Genre.functions.PutGenreRequestFunction;
 import org.example.movie.entites.Genre.services.api.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,6 @@ public class GenreDefaultController implements GenreController {
 
     @Override
     public void createGenre(String genreId){
-        System.out.println("hkljh");
         genreService.findByName(genreId)
                 .ifPresentOrElse(
                         genre -> {

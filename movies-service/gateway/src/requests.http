@@ -16,7 +16,6 @@ GET  http://localhost:8083/api/genres/abcd/movies
 ### Create new movie
 PUT http://localhost:8083/api/movies/999bcc9b-6679-4e4d-bf01-e36b3491a775
 Content-Type: application/json
-Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
 {
   "title": "The Lord of the Rings: The Fellowship of the Ring",
@@ -32,7 +31,6 @@ DELETE http://localhost:8083/api/movies/899bcc9b-6679-4e4d-bf01-e36b3491a775
 ### Update movie
 PATCH http://localhost:8083/api/movies/999bcc9b-6679-4e4d-bf01-e36b3491a775
 Content-Type: application/json
-Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
 {
   "description": "changed description",
@@ -57,7 +55,6 @@ DELETE http://localhost:8083/api/genres/abc
 ### Create genre
 PUT http://localhost:8083/api/genres/NewGenre
 Content-Type: application/json
-Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
 {
   "description": "new genre description"
@@ -66,7 +63,6 @@ Authorization: Basic a2V2aW46dXNlcnVzZXI=
 ### Update genre
 PATCH http://localhost:8083/api/genres/NewGenre
 Content-Type: application/json
-Authorization: Basic a2V2aW46dXNlcnVzZXI=
 
 {
   "description": "updated description"

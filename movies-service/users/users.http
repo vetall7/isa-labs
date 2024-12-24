@@ -1,0 +1,11 @@
+PUT localhost:8084/users/0ad35b81-ad81-4316-b41a-0280b4dd2ecd
+Content-Type: application/json
+
+{
+  "name": "newUser",
+  "email": "asdfasdf",
+  "password": "asdfasdf"
+}
+
+### Get user by id
+GET localhost:8084/users/0ad35b81-ad81-4316-b41a-0280b4dd2ecd
