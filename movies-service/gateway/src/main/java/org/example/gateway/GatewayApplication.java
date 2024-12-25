@@ -19,7 +19,8 @@ public class GatewayApplication {
 			RouteLocatorBuilder builder,
 			@Value("${movie.url}") String movieUrl,
 			@Value("${genre.url}") String genreUrl,
-			@Value("${gateway.url}") String hostUrl
+			@Value("${gateway.url}") String hostUrl,
+			@Value("${user.url}") String usersUrl
 	){
 		return builder
 				.routes()
@@ -41,6 +42,15 @@ public class GatewayApplication {
 								"/api/genres/{genreId}"
 						)
 						.uri(genreUrl)
+				)
+				.route("users", route -> route
+						.host(hostUrl)
+						.and()
+						.path(
+								"/api/users",
+								"/api/users/**"
+						)
+						.uri(usersUrl)
 				)
 				.build();
 	}

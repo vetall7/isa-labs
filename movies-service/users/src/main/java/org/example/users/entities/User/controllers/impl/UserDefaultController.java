@@ -4,6 +4,7 @@ import org.example.users.entities.User.controllers.api.UserController;
 import org.example.users.entities.User.dto.GetUserResponse;
 import org.example.users.entities.User.dto.GetUsersResponse;
 import org.example.users.entities.User.dto.PutUserRequest;
+import org.example.users.entities.User.dto.UserLoginInfo;
 import org.example.users.entities.User.functions.RequestToUserFunction;
 import org.example.users.entities.User.functions.UserToResponseFunction;
 import org.example.users.entities.User.functions.UsersToResponseFunction;
@@ -63,5 +64,15 @@ public class UserDefaultController implements UserController {
     @Override
     public GetUsersResponse getUsers() {
         return usersToResponseFunction.apply(userService.findAll());
+    }
+
+    @Override
+    public String login(UserLoginInfo loginInfo) {
+        String jwt_token = userService.login(loginInfo);
+        if (jwt_token.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid credentials");
+        }else{
+            return jwt_token;
+        }
     }
 }

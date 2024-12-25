@@ -36,4 +36,13 @@ public class User {
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Date updatedAt;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public enum Role {
+        USER,
+        ADMIN
+    }
 }

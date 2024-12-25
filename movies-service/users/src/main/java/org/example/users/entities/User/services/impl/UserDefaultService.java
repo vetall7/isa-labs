@@ -3,10 +3,13 @@ package org.example.users.entities.User.services.impl;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.users.entities.User.JWT.JwtUtil;
 import org.example.users.entities.User.User;
+import org.example.users.entities.User.dto.UserLoginInfo;
 import org.example.users.entities.User.repositories.api.UserRepository;
 import org.example.users.entities.User.services.api.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +23,15 @@ import java.util.UUID;
 public class UserDefaultService implements UserService {
     private final UserRepository userRepository;
 
+    private final JwtUtil jwtTokenUtil;
+
+    private final PasswordEncoder passwordEncoder;
+
     @Autowired
-    public UserDefaultService(UserRepository userRepository) {
+    public UserDefaultService(UserRepository userRepository, JwtUtil jwtTokenUtil, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -53,5 +62,19 @@ public class UserDefaultService implements UserService {
     @Override
     public List<User> findAll() {
         return (List<User>) userRepository.findAll();
+    }
+
+    @Override
+    public String login(UserLoginInfo loginInfo) {
+        Optional<User> user = userRepository.findByName(loginInfo.getName());
+        if (user.isEmpty()) {
+            return "";
+        }
+        User unpackedUser = user.get();
+        if (passwordEncoder.matches(loginInfo.getPassword(), unpackedUser.getPassword())) {
+            return this.jwtTokenUtil.generateToken(unpackedUser.getName(), unpackedUser.getRole().toString());
+        } else {
+            return "";
+        }
     }
 }
