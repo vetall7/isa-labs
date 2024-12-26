@@ -9,3 +9,17 @@ export const login = createAction(
 export const logout = createAction(
   '[Auth] Logout'
 );
+
+export const register = createAction(
+  '[Auth] Register',
+  props<{user: UserModel}>()
+);
+
+export const registerSuccess = createAction(
+  '[Auth] Register Success'
+);
+
+export const registerFailure = createAction(
+  '[Auth] Register Failure',
+  props<{error: string}>()
+);

@@ -3,9 +3,11 @@ import {UserModel} from "@shared/models";
 export interface AuthState {
     isAuthenticated: boolean;
     user: UserModel | null;
+    registerError: string | null;
 }
 
 export const initialAuthState: AuthState = {
     isAuthenticated: false,
-    user: null
+    user: null,
+    registerError: null
 }

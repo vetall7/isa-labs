@@ -6,6 +6,7 @@ import {DetailedGenreComponent} from '@genre/components/detailed-genre/detailed-
 import {CreateMovieComponent} from '@movie/components/create-movie/create-movie.component';
 import {EditMovieComponent} from '@movie/components/edit-movie/edit-movie.component';
 import {DetailedMovieComponent} from '@movie/components/detailed-movie/detailed-movie.component';
+import {RegistrationComponent} from './features/auth/pages/registration/registration.component';
 
 export const routes: Routes = [
   {
@@ -35,5 +36,9 @@ export const routes: Routes = [
   {
     component: DetailedMovieComponent,
     path: "genres/:genreId/movies/:movieId"
+  },
+  {
+    component: RegistrationComponent,
+    path: "auth/registration"
   }
 ];
