@@ -26,5 +26,17 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  private isDarkTheme = false;
 
+  protected toggleTheme() : void {
+    console.log('toggleTheme');
+    this.isDarkTheme = !this.isDarkTheme;
+    const body = document.body;
+
+    if (this.isDarkTheme) {
+      body.classList.add('dark-mode');
+    } else {
+      body.classList.remove('dark-mode');
+    }
+  }
 }

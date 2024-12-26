@@ -19,7 +19,8 @@
     "module": "ES2022",
     "paths": {
       "@genre/*" : ["./src/app/features/genre/*"],
-      "@movie/*" : ["./src/app/features/movie/*"]
+      "@movie/*" : ["./src/app/features/movie/*"],
+      "@shared/*" : ["./src/app/shared/*"],
     }
   },
   "angularCompilerOptions": {

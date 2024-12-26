@@ -11,16 +11,4 @@ import {MatButton} from '@angular/material/button';
   standalone: true
 })
 export class AppComponent {
-  isDarkTheme = false;
-
-  toggleTheme() {
-    this.isDarkTheme = !this.isDarkTheme;
-    const body = document.body;
-
-    if (this.isDarkTheme) {
-      body.classList.add('dark-theme');
-    } else {
-      body.classList.remove('dark-theme');
-    }
-  }
 }
