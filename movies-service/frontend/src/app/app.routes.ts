@@ -7,6 +7,7 @@ import {CreateMovieComponent} from '@movie/components/create-movie/create-movie.
 import {EditMovieComponent} from '@movie/components/edit-movie/edit-movie.component';
 import {DetailedMovieComponent} from '@movie/components/detailed-movie/detailed-movie.component';
 import {RegistrationComponent} from './features/auth/pages/registration/registration.component';
+import {LoginComponent} from './features/auth/pages/login/login.component';
 
 export const routes: Routes = [
   {
@@ -40,5 +41,9 @@ export const routes: Routes = [
   {
     component: RegistrationComponent,
     path: "auth/registration"
+  },
+  {
+    component: LoginComponent,
+    path: "auth/login"
   }
 ];

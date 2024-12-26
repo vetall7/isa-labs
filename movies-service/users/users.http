@@ -8,13 +8,13 @@ Content-Type: application/json
 }
 
 ### Get user by id
-GET localhost:8085/api/users/0ad35b81-ad81-4316-b41a-0280b4dd2ecd
+GET localhost:8085/api/users/vitalii
 
 ### login
 POST localhost:8085/api/users/login
 Content-Type: application/json
 
 {
-  "name": "newUser",
-  "password": "asdfasdf"
+  "name": "vitalii",
+  "password": "aaaaaaaa"
 }

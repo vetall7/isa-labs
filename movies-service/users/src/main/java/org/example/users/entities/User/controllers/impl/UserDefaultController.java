@@ -25,6 +25,7 @@ public class UserDefaultController implements UserController {
 
     private final UsersToResponseFunction usersToResponseFunction;
 
+
     public UserDefaultController(UserService userService, RequestToUserFunction requestToMovieFunction, UserToResponseFunction userToResponseFunction, UsersToResponseFunction usersToResponseFunction) {
         this.userService = userService;
         this.requestToMovieFunction = requestToMovieFunction;
@@ -56,12 +57,6 @@ public class UserDefaultController implements UserController {
     }
 
     @Override
-    public GetUserResponse getUser(UUID id) {
-        return userService.findById(id).map(userToResponseFunction)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
-    }
-
-    @Override
     public GetUsersResponse getUsers() {
         return usersToResponseFunction.apply(userService.findAll());
     }
@@ -74,5 +69,11 @@ public class UserDefaultController implements UserController {
         }else{
             return jwt_token;
         }
+    }
+
+    @Override
+    public GetUserResponse getUserByName(String name) {
+        return userService.findByName(name).map(userToResponseFunction)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
 }

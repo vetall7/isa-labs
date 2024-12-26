@@ -9,6 +9,7 @@ import {register} from '../../../../states/auth/auth.action';
 import {UserModel} from '@shared/models';
 import {selectRegisterError} from '../../../../states/auth/auth.selector';
 import {toSignal} from '@angular/core/rxjs-interop';
+import {UserRegistrationInfoModel} from "@shared/models/UserRegistrationInfo";
 
 @Component({
   selector: 'app-registration',
@@ -41,14 +42,14 @@ export class RegistrationComponent {
   error = toSignal(this.store.select(selectRegisterError));
 
   protected readonly form = this.fb.group({
-    userName: ['', [Validators.required, Validators.maxLength(30)]],
+    name: ['', [Validators.required, Validators.maxLength(30)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]]
   });
 
   protected onSubmit(): void {
     if (this.form.valid) {
-      this.store.dispatch(register({ user: this.form.value as UserModel }));
+      this.store.dispatch(register({ user: this.form.value as UserRegistrationInfoModel }));
     }
   }
 
@@ -58,9 +59,9 @@ export class RegistrationComponent {
   }
 
   protected updateNameError(): void {
-    if (this.form.get('userName')?.hasError('required')) {
+    if (this.form.get('name')?.hasError('required')) {
       this.nameError.set('Name is required');
-    }else if (this.form.get('userName')?.hasError('maxLength')) {
+    }else if (this.form.get('name')?.hasError('maxLength')) {
       this.nameError.set('Name is too long');
     }
   }

@@ -7,11 +7,11 @@
         <input
           matInput
           placeholder="user_name"
-          formControlName="userName"
+          formControlName="name"
           (blur)="updateNameError()"
           required
         />
-        @if (form.get('userName')?.touched && form.get('userName')?.invalid) {
+        @if (form.get('name')?.touched && form.get('name')?.invalid) {
           <mat-error>{{nameError()}}</mat-error>
         }
       </mat-form-field>

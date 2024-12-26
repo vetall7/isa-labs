@@ -1,12 +1,10 @@
 export class UserModel {
-  public readonly id: number;
-  public readonly username: string;
-  public readonly email: string;
+  public readonly name: string;
+  public readonly email: string | null;
   public readonly role: "USER" | "ADMIN";
 
-  constructor(id: number, username: string, email: string, role: "USER" | "ADMIN") {
-    this.id = id;
-    this.username = username;
+  constructor(name: string, email: string, role: "USER" | "ADMIN") {
+    this.name = name;
     this.email = email;
     this.role = role;
   }

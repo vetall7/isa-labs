@@ -8,12 +8,15 @@ import {provideStore} from '@ngrx/store';
 import {authReducer} from './states/auth/auth.reducer';
 import {provideEffects} from '@ngrx/effects';
 import {AuthEffects} from './states/auth/auth.effect';
+import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes), provideHttpClient(withFetch()), provideAnimationsAsync(),
     provideStore({
       auth: authReducer
     }),
-    provideEffects(AuthEffects)
+    provideEffects(AuthEffects),
+    JwtHelperService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
   ]
 };

@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: start;
+  margin: 10vh auto;
+  align-items: center;
+  height: 35%;
+  width: 20%;
+  flex-direction: column;
+  box-shadow: var(--mat-sys-level2);
+}
+
+.submit-button {
+  margin-top: 20px;
+  margin-left: 23%;
+}
+
+h1 {
+  color: var(--mat-sys-primary);
+}

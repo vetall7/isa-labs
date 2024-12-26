@@ -26,11 +26,11 @@ public interface UserController {
             UUID id
     );
 
-    @GetMapping("/api/users/{id}")
+    @GetMapping("/api/users/{name}")
     @ResponseStatus(HttpStatus.OK)
-    GetUserResponse getUser(
+    GetUserResponse getUserByName(
             @PathVariable
-            UUID id
+            String name
     );
 
     @GetMapping("/api/users")
