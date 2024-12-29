@@ -1,6 +1,6 @@
 ### Get all movies
 GET http://localhost:8083/api/movies
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuZXdVc2VyIiwiaWF0IjoxNzM1MTU0NjQ1LCJleHAiOjE3MzUxOTA2NDUsInJvbGUiOiJVU0VSIn0.T-G5WcFRXRwVgzt7tUvMAjtnFFbd5HcZhABYo2pHSSY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzM1NTAyMzkwLCJleHAiOjE3MzU1MzgzOTAsInJvbGUiOiJBRE1JTiJ9.DQObSYSI6YcyXOG_3vi-5w1eJswW0zk9HqC5Wa6zqkQ
 
 ### Get single movie
 GET http://localhost:8083/api/movies/899bcc9b-6679-4e4d-bf01-e36b3491a775
@@ -41,6 +41,7 @@ Content-Type: application/json
 
 ### Get all genres
 GET http://localhost:8083/api/genres
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzM1NTAyMzkwLCJleHAiOjE3MzU1MzgzOTAsInJvbGUiOiJBRE1JTiJ9.DQObSYSI6YcyXOG_3vi-5w1eJswW0zk9HqC5Wa6zqkQ
 
 ### Get genre by name
 GET http://localhost:8083/api/genres/Action
