@@ -35,7 +35,7 @@ public class UserDefaultController implements UserController {
 
     @Override
     public void createUser(UUID id, PutUserRequest putUserRequest) {
-        userService.findById(id)
+        userService.findByName(putUserRequest.getName())
                 .ifPresentOrElse(
                         user -> {
                             throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");

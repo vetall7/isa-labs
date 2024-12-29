@@ -1,15 +1,17 @@
-import {Component, inject, signal} from '@angular/core';
+import {Component, effect, inject, signal} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {MatIcon} from '@angular/material/icon';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {Store} from '@ngrx/store';
-import {register} from '../../../../states/auth/auth.action';
+import {clearError, register, setIsRegisterSuccess} from '../../../../states/auth/auth.action';
 import {UserModel} from '@shared/models';
-import {selectRegisterError} from '../../../../states/auth/auth.selector';
+import {selectAuthState, selectError, selectIsRegisterSuccess} from '../../../../states/auth/auth.selector';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {UserRegistrationInfoModel} from "@shared/models/UserRegistrationInfo";
+import {Router, RouterLink} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-registration',
@@ -21,7 +23,8 @@ import {UserRegistrationInfoModel} from "@shared/models/UserRegistrationInfo";
     MatLabel,
     MatIcon,
     MatIconButton,
-    MatButton
+    MatButton,
+    RouterLink
   ],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
@@ -31,6 +34,10 @@ export class RegistrationComponent {
 
   private readonly store = inject(Store);
 
+  private readonly snackBar = inject(MatSnackBar);
+
+  private readonly router = inject(Router);
+
   hide = signal(true);
 
   nameError = signal("");
@@ -39,8 +46,28 @@ export class RegistrationComponent {
 
   passwordError = signal("");
 
-  error = toSignal(this.store.select(selectRegisterError));
+  error = toSignal(this.store.select(selectError));
 
+  isRegisterSuccess = toSignal(this.store.select(selectIsRegisterSuccess));
+
+  constructor() {
+    effect(() => {
+      const errorMessage = this.error();
+
+      if (errorMessage) {
+        this.openSnackBar(errorMessage);
+      }
+    });
+    effect(() => {
+      const isRegisterSuccess = this.isRegisterSuccess();
+
+      if (isRegisterSuccess){
+        this.openSnackBar("Account created successfully");
+        this.router.navigate(["/auth/login"]);
+        this.store.dispatch(setIsRegisterSuccess({isRegistered: false}));
+      }
+    });
+  }
   protected readonly form = this.fb.group({
     name: ['', [Validators.required, Validators.maxLength(30)]],
     email: ['', [Validators.required, Validators.email]],
@@ -49,11 +76,18 @@ export class RegistrationComponent {
 
   protected onSubmit(): void {
     if (this.form.valid) {
+      this.store.dispatch(clearError());
       this.store.dispatch(register({ user: this.form.value as UserRegistrationInfoModel }));
     }
   }
 
-  onHide(event: MouseEvent) {
+  protected openSnackBar(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 2000,
+    });
+  }
+
+  protected onHide(event: MouseEvent): void {
     this.hide.set(!this.hide());
     event.stopPropagation();
   }

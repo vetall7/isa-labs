@@ -13,6 +13,6 @@ body.dark-mode {
   color-scheme: dark;
 }
 
-html, body { height: 100%; }
+html, body { height: 100%; color: var(--mat-sys-primary) }
 body { background-color: var(--mat-sys-background); margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 

@@ -3,7 +3,7 @@
   justify-content: start;
   margin: 10vh auto;
   align-items: center;
-  height: 35%;
+  height: 40%;
   width: 20%;
   flex-direction: column;
   box-shadow: var(--mat-sys-level2);
@@ -14,6 +14,6 @@
   margin-left: 23%;
 }
 
-h1 {
-  color: var(--mat-sys-primary);
+.not-registered {
+  margin-top: 20px;
 }

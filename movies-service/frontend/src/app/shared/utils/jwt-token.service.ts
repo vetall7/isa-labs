@@ -10,8 +10,4 @@ export class JwtTokenService {
   public decodeToken(token: string): any {
     return this.jwtHelper.decodeToken(token);
   }
-
-  public getUserRole(token: string): "ADMIN" | "USER" {
-    return this.decodeToken(token).role;
-  }
 }

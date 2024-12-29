@@ -13,7 +13,17 @@ export const selectUser = createSelector(
   (auth) => auth.user
 )
 
-export const selectRegisterError = createSelector(
+export const selectError = createSelector(
   selectAuthState,
-  (auth) => auth.registerError
+  (auth) => auth.error
+);
+
+export const selectIsRegisterSuccess = createSelector(
+  selectAuthState,
+  (auth) => auth.isRegisterSuccess
+);
+
+export const selectIsLoginSuccess = createSelector(
+  selectAuthState,
+  (auth) => auth.isLoginSuccess
 );

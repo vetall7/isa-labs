@@ -34,3 +34,17 @@ export const registerFailure = createAction(
   '[Auth] Register Failure',
   props<{error: string}>()
 );
+
+export const clearError = createAction(
+  '[Auth] Clear Error'
+);
+
+export const setIsRegisterSuccess = createAction(
+  '[Auth] Is Registered',
+  props<{isRegistered: boolean}>()
+);
+
+export const setIsLoginSuccess = createAction(
+  '[Auth] Is Login Success',
+  props<{isLoginSuccess: boolean}>()
+);

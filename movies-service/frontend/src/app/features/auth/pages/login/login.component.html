@@ -36,6 +36,10 @@
     </div>
     <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" class="submit-button">Log in</button>
   </form>
+  <div class="not-registered">
+    <span>Don't have an account? </span>
+    <a routerLink="/auth/registration">Register</a>
+  </div>
 </div>
 
 error: {{error()}}
