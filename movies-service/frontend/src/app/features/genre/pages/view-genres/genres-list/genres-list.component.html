@@ -1,8 +1,10 @@
 @let genres = genresSig();
 @if(genres){
-  @for (genre of genres.genres; track genre.name){
-    <app-single-genre [genre]="genre"></app-single-genre>
-  }
+  <div class="wrapper">
+    @for (genre of genres.genres; track genre.name){
+      <app-single-genre [genre]="genre"></app-single-genre>
+    }
+  </div>
 }
 @else{
   <h1>loading...</h1>

@@ -2,11 +2,21 @@ import {Component, inject, Input} from '@angular/core';
 import {Genre} from '@genre/models';
 import {GenreService} from '@genre/services';
 import {RouterLink} from '@angular/router';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardHeader,
+  MatCardImage,
+  MatCardModule
+} from '@angular/material/card';
+import {MatButton, MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-single-genre',
   imports: [
-    RouterLink
+    RouterLink,
+    MatCardModule, MatButtonModule
   ],
   providers: [],
   standalone: true,
