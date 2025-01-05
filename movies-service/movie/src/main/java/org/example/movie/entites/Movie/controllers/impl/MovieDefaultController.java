@@ -43,6 +43,7 @@ public class MovieDefaultController implements MovieController {
 
     @Override
     public GetMovieResponse getMovie(UUID movieId) {
+        System.out.println("this microservice is working");
         return movieService.findById(movieId)
                 .map(movieToResponseFunction)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
