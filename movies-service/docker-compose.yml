@@ -1,36 +1,56 @@
 services:
-#  movies-gateway:
-#    build: ./gateway
-#    environment:
-#        MOVIE_URL: "http://movies-movies:8080"
-#        GENRE_URL: "http://movies-genres:8080"
-#        GATEWAY_URL: "movies-gateway:8080"
-#    restart: always
-#
-#  movies-movies:
-#    build: ./movie
-#    restart: always
-#    environment:
-#        SPRING_DATASOURCE_URL: "jdbc:postgresql://movies-database:5432/movies"
-#        SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_MOVIES}
-#        SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_MOVIES}
-#
-#  movies-genres:
-#    build: ./genre
-#    restart: always
-#    environment:
-#        MOVIE_URL: "http://movies-movies:8080"
-#        SPRING_DATASOURCE_URL: "jdbc:postgresql://genres-database:5432/genres"
-#        SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_GENRES}
-#        SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_GENRES}
-#
-#  movies-frontend:
-#    build: ./frontend
-#    environment:
-#      API_URL: http://movies-gateway:8080/api
-#    restart: always
-#    ports:
-#      - "8082:80"
+  movies-config:
+    build: ./configuration
+    restart: always
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
+  
+  movies-gateway:
+    build: ./gateway
+    environment:
+        MOVIE_URL: "http://movies-movies:8080"
+        GENRE_URL: "http://movies-genres:8080"
+        GATEWAY_URL: "movies-gateway:8080"
+        
+        SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
+        EUREKA_INSTANCE_INSTANCE_ID: "1"
+    restart: always
+
+  movies-eureka:
+    build: ./eureka
+    restart: always
+    ports:
+      - "8090:8080"
+
+  movies-movies:
+    build: ./movie
+    restart: always
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
+      
+  movies-genres:
+    build: ./genre
+    restart: always
+    environment:
+        MOVIE_URL: "http://movies-movies:8080"
+        SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
+        EUREKA_INSTANCE_INSTANCE_ID: "1"
+
+  movies-frontend:
+    build: ./frontend
+    environment:
+      API_URL: http://movies-gateway:8080/api
+    restart: always
+    ports:
+      - "8082:80"
+
+  movies-users:
+    build: ./users
+    restart: always
+    environment:
+      SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
 
   genres-database:
     image: postgres:13.5

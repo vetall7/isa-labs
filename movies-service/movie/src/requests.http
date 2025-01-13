@@ -1,5 +1,5 @@
 ### Get all movies
-GET http://localhost:8081/api/movies
+GET http://localhost:8084/api/movies
 
 ### Get single movie
 GET http://localhost:8081/api/movies/899bcc9b-6679-4e4d-bf01-e36b3491a775
