@@ -38,8 +38,8 @@
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
-    <li><a href="#roadmap">Further roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li
+    <li><a href="#further-roadmap">Further Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -123,7 +123,7 @@ The project is built on a microservices architecture, where each microservice ha
 
 
 <!-- ROADMAP -->
-## Further roadmap
+## Further Roadmap
 
 
 - [ ] Add Apache Kafka for communication between microservices
