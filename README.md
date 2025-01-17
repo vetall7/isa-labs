@@ -161,11 +161,11 @@ Vitalii Shapovalov - [@LinkedIn](https://www.linkedin.com/in/vitalii-shapovalov-
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [Eureka]([https://choosealicense.com](https://docs.spring.io/spring-cloud-netflix/docs/current/reference/html/))
-* [Angular NgRx](https://medium.com/@igorm573/state-management-with-ngrx-in-angular-66ddc61cdf14)
-* [Authorization with JWT token in Java Spring]([https://flexbox.malven.co/](https://medium.com/@tericcabrel/implement-jwt-authentication-in-a-spring-boot-3-application-5839e4fd8fac))
-* [Java Spring](spring.io)
-* [Angular Matherial]([https://shields.io](https://material.angular.io/))
+* [Eureka]([https://docs.spring.io/spring-cloud-netflix/docs/current/reference/html/])
+* [Angular NgRx]([https://medium.com/@igorm573/state-management-with-ngrx-in-angular-66ddc61cdf14])
+* [Authorization with JWT token in Java Spring]([https://medium.com/@tericcabrel/implement-jwt-authentication-in-a-spring-boot-3-application-5839e4fd8fac])
+* [Java Spring]([spring.io])
+* [Angular Matherial]([https://material.angular.io/])
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
