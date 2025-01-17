@@ -1,14 +1,5 @@
 <a id="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![Unlicense License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -94,38 +85,22 @@
 
 ```
 
-Project created based on microservices arhitecture. Every microservice has its own database.
-Reverse proxy technique is used for redirecting queries from the client to the application gateway.
-Every microservice gets its own configuration properties from the centralized config server.
-Eureka discovery servire is utilized in order to track localizations of each service.
-Every service is containerized using Docker. Docker compose is responsible for running containers.
-Microservices communicate with each other using REST API (soon will be replaced with Apache Kafka).
+The project is built on a microservices architecture, where each microservice has its own dedicated database. A reverse proxy is used to route client requests to the application gateway, ensuring seamless communication. Configuration properties for each microservice are managed centrally through a config server, while Eureka Discovery Service is employed to monitor and track the location of each service. All services are containerized using Docker, with Docker Compose orchestrating the containers' lifecycle. Microservices interact via REST APIs, which will soon transition to Apache Kafka for more robust communication. Authorization and authentication are securely handled using JWT tokens.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 ### Built With
- <p>
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=angular" />
-  </a>
-</p>
- <p>
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=spring" />
-  </a>
-</p>
-  <p>
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=docker" />
-  </a>
-  </p>
-  <a>Eureka</a>
-  <br/>
-  <a>Liquibase</a>
-</p>
+<p> <a href="https://angular.io"><img src="https://skillicons.dev/icons?i=angular" /></a> The front-end of the application is built with the Angular framework, utilizing NgRx Store for state management and Angular Material for theming and reusable components. </p> 
 
+<p> <a href="https://spring.io"><img src="https://skillicons.dev/icons?i=spring" /></a> Spring MVC is used to develop RESTful APIs for the application gateway and microservices. Spring Security provides robust authorization and authentication mechanisms, while Spring Cloud Netflix Eureka Server handles service discovery. </p>
+
+<p> <a href="https://docker.com"><img src="https://skillicons.dev/icons?i=docker" /></a> Docker ensures the containerization of the entire application, with each microservice running in its own container. Docker Compose manages the container network, and volumes are created for PostgreSQL data persistence to prevent data loss. </p>
+
+<p><a href="https://cloud.spring.io/spring-cloud-netflix/reference/html/">Spring Cloud Netflix - Eureka</a> is crucial for tracking the location and availability of microservices.</p>
+
+<p> <a href="https://www.liquibase.com/">Liquibase</a> is used for creating database migrations. It allows version control for database changes. 
+</p>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -133,70 +108,37 @@ Microservices communicate with each other using REST API (soon will be replaced 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
-### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
-
-### Installation
-
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
-
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/github_username/repo_name.git
    ```
-3. Install NPM packages
+2. Install NPM packages inside the frontend folder
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
+3. Add .env file based on example .env.sample 
+4. Run script for building all services
    ```sh
-   git remote set-url origin github_username/repo_name
-   git remote -v # confirm the changes
+    ./building_script.sh
+   ```
+5. Run application
+   ```sh 
+    sudo docker compose up --build -d
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Further roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [ ] Add Apache Kafka for communication between microservices
+- [ ] Improve styles of the app 
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTRIBUTING -->
@@ -213,31 +155,11 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### Top contributors:
-
-<a href="https://github.com/othneildrew/Best-README-Template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=othneildrew/Best-README-Template" alt="contrib.rocks image" />
-</a>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the Unlicense License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Vitalii Shapovalo - [@LinkedIn](https://www.linkedin.com/in/vitalii-shapovalov-6670ba26a/) - shapovalovvit0@gmail.com
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -245,8 +167,6 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
