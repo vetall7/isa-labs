@@ -89,6 +89,8 @@ The project is built on a microservices architecture, where each microservice ha
 
 <p> <a href="https://docker.com"><img src="https://skillicons.dev/icons?i=docker" /></a> Docker ensures the containerization of the entire application, with each microservice running in its own container. Docker Compose manages the container network, and volumes are created for PostgreSQL data persistence to prevent data loss. </p>
 
+<p> <a href="https://www.postgresql.org/"><img src="https://skillicons.dev/icons?i=postgres" /></a> PostgreSQL database system is used for storing data </p>
+
 <p><a href="https://cloud.spring.io/spring-cloud-netflix/reference/html/">Spring Cloud Netflix - Eureka</a> is crucial for tracking the location and availability of microservices.</p>
 
 <p> <a href="https://www.liquibase.com/">Liquibase</a> is used for creating database migrations. It allows version control for database changes. 
