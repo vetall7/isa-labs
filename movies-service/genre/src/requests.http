@@ -15,7 +15,7 @@ DELETE http://localhost:8082/api/genres/Action
 DELETE http://localhost:8082/api/genres/abc
 
 ### Create genre
-PUT http://localhost:8082/api/genres/avf
+PUT http://localhost:8082/api/genres/Action
 Content-Type: application/json
 
 {

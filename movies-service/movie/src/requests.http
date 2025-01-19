@@ -8,7 +8,7 @@ GET http://localhost:8081/api/movies/899bcc9b-6679-4e4d-bf01-e36b3491a775
 GET http://localhost:8081/api/movies/6bcf71ad-3aa6-474b-858e-2027b5ce5fe
 
 ### Get genre movies
-GET http://localhost:8081/api/genres/Action/movies
+GET http://localhost:8084/api/genres/Action/movies
 
 ### Get genre movies, genre does not exist
 GET  http://localhost:8081/api/genres/avf/movies

@@ -79,10 +79,10 @@
             <artifactId>liquibase-core</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.cloud</groupId>-->
-<!--            <artifactId>spring-cloud-starter-config</artifactId>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
 
     </dependencies>
 
@@ -104,6 +104,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+
 
             <plugin>
                 <groupId>org.liquibase</groupId>

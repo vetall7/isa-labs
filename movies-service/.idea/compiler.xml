@@ -7,12 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="genre" />
         <module name="movie" />
+        <module name="apache-kafka" />
         <module name="configuration" />
+        <module name="eureka" />
+        <module name="genre" />
         <module name="gateway" />
         <module name="users" />
-        <module name="eureka" />
       </profile>
       <profile name="Gradle Imported" enabled="true">
         <outputRelativeToContentRoot value="true" />
@@ -30,6 +31,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="apache-kafka" options="-parameters" />
       <module name="configuration" options="-parameters" />
       <module name="eureka" options="-parameters" />
       <module name="gateway" options="-parameters" />
