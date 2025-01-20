@@ -77,7 +77,7 @@
 
 ```
 
-The project is built on a microservices architecture, where each microservice has its own dedicated database. A reverse proxy is used to route client requests to the application gateway, ensuring seamless communication. Configuration properties for each microservice are managed centrally through a config server, while Eureka Discovery Service is employed to monitor and track the location of each service. All services are containerized using Docker, with Docker Compose orchestrating the containers' lifecycle. Microservices interact via REST APIs, which will soon transition to Apache Kafka for more robust communication. Authorization and authentication are securely handled using JWT tokens.
+The project is built on a microservices architecture, where each microservice has its own dedicated database. A reverse proxy is used to route client requests to the application gateway, ensuring seamless communication. Configuration properties for each microservice are managed centrally through a config server, while Eureka Discovery Service is employed to monitor and track the location of each service. All services are containerized using Docker, with Docker Compose orchestrating the containers' lifecycle. Microservices interact via an Apache Kafka broker. Authorization and authentication are securely handled using JWT tokens.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -132,8 +132,8 @@ The project is built on a microservices architecture, where each microservice ha
 ## Further Roadmap
 
 
-- [ ] Add Apache Kafka for communication between microservices
-- [ ] Improve styles of the app 
+- [x] Add Apache Kafka for communication between microservices
+- [x] Improve styles of the app 
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
