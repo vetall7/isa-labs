@@ -1,19 +1,27 @@
+
+<mat-dialog-content>
+  <h2 mat-dialog-title>Add new movie</h2>
 <form [formGroup]="movieForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="title">Title</label>
-    <input id="title" formControlName="title" type="text" />
-  </div>
-  <div>
-    <label for="description">Description</label>
-    <textarea id="description" formControlName="description"></textarea>
-  </div>
-  <div>
-    <label for="year">Year</label>
-    <input id="year" formControlName="year" type="number" />
-  </div>
-  <div>
-    <label for="imageUrl">Image URL</label>
-    <input id="imageUrl" formControlName="imageUrl" type="text" />
-  </div>
-  <button type="submit" [disabled]="movieForm.invalid">Submit</button>
-</form>
+    <div class="form">
+    <mat-form-field>
+      <mat-label >Title</mat-label>
+      <input matInput id="title" formControlName="title" type="text" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Description</mat-label>
+      <textarea matInput id="description" formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Year</mat-label>
+      <input matInput id="year" formControlName="year" type="number" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label >Image URL</mat-label>
+      <input matInput id="imageUrl" formControlName="imageUrl" type="text" />
+    </mat-form-field>
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="movieForm.invalid">Submit</button>
+    </mat-dialog-actions>
+    </div>
+  </form>
+</mat-dialog-content>

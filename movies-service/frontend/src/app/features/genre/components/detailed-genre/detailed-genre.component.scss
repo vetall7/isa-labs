@@ -1,8 +1,48 @@
-.movies-list {
-  list-style-type: disc;
-  padding-left: 20px;
+.wrapper {
+  width: 50%;
+  margin: 0 auto;
 }
 
-.movie-item {
-  margin-bottom: 8px;
+.title {
+  text-align: center;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.settings-button {
+  margin-top: 15px;
+  height: 30px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.buttons {
+  margin-right: 0.5rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.arrow-back{
+  position: absolute;
+  top: 7rem;
+  left: 25rem;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
 }

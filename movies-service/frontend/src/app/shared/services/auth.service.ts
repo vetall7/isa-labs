@@ -20,7 +20,7 @@ export class AuthService {
     return this.http.put<void>('/api/users/registration/' + uuidv4(), user);
   }
 
-  login(user: UserLoginInfoModel): Observable<string> {
+  public login(user: UserLoginInfoModel): Observable<string> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { name: user.name, password: user.password };
 
@@ -42,6 +42,10 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    return !!this.localStorage.getItem('token');
+    const token = this.localStorage.getItem('token');
+    if (!token) {
+      return false;
+    }
+    return !this.jwtTokenService.isTokenExpired(token);
   }
 }

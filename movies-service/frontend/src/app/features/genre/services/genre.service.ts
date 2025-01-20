@@ -1,6 +1,6 @@
 import {computed, inject, Injectable, signal} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, tap} from 'rxjs';
+import {delay, Observable, tap} from 'rxjs';
 import {Genres, Genre, DetailedGenre, Movies} from '@genre/models';
 
 @Injectable({ providedIn: 'root' })
@@ -13,6 +13,7 @@ export class GenreService {
 
   public getGenres(): Observable<Genres>{
     return this.http.get<Genres>('/api/genres').pipe(
+      delay(1000),
       tap((genres) => {
         this.genresSignal.set(genres);
       })

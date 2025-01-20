@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {AuthService} from '../../features/auth/services/auth.service';
+import {AuthService} from '@shared/services/auth.service';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import {
   login,

@@ -2,13 +2,16 @@ import {Component, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {GenreService} from '@genre/services';
 import {DetailedGenre} from '@genre/models';
-import {Router} from '@angular/router';
 import {catchError, EMPTY} from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import {MatDialogActions, MatDialogContent, MatDialogRef, MatDialogTitle} from '@angular/material/dialog';
+import {MatError, MatFormField, MatLabel} from '@angular/material/form-field';
+import {MatButton} from '@angular/material/button';
+import {MatInput} from '@angular/material/input';
 
 @Component({
   selector: 'app-create-genre',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatDialogContent, MatFormField, MatLabel, MatDialogActions, MatButton, MatInput, MatError, MatDialogTitle],
   standalone: true,
   templateUrl: './create-genre.component.html',
   styleUrl: './create-genre.component.scss'
@@ -16,9 +19,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CreateGenreComponent {
   private readonly fb = inject(FormBuilder);
 
-  private readonly router = inject(Router);
-
   private readonly genreService = inject(GenreService);
+
+  private readonly dialogRef = inject(MatDialogRef<CreateGenreComponent>);
 
   protected genreForm = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -45,7 +48,7 @@ export class CreateGenreComponent {
           })
         )
           .subscribe( () => {
-                this.router.navigate(['/genres']);
+            this.dialogRef.close();
             }
         );
       }

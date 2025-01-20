@@ -11,12 +11,15 @@ import {
   MatCardModule
 } from '@angular/material/card';
 import {MatButton, MatButtonModule} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {EditGenreComponent} from '@genre/components/edit-genre/edit-genre.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-single-genre',
   imports: [
     RouterLink,
-    MatCardModule, MatButtonModule
+    MatCardModule, MatButtonModule, MatIcon
   ],
   providers: [],
   standalone: true,
@@ -26,11 +29,19 @@ import {MatButton, MatButtonModule} from '@angular/material/button';
 export class SingleGenreComponent {
   @Input() genre: Genre | undefined;
 
+  private readonly dialog = inject(MatDialog);
+
   private readonly genreService = inject(GenreService);
 
   protected onDelete(): void {
     if (this.genre) {
       this.genreService.deleteGenre(this.genre).subscribe();
     }
+  }
+
+  protected onEditGenre(genreId: String): void {
+    this.dialog.open(EditGenreComponent, {
+      data: { genreId: genreId }
+    });
   }
 }

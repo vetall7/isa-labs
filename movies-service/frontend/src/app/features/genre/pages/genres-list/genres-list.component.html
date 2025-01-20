@@ -1,0 +1,25 @@
+@let genres = genresSig();
+@if(genres){
+  <div class="wrapper">
+    <mat-list>
+      <h1 class="title" mat-subheader>Genres</h1>
+    @for (genre of genres.genres; track genre.name){
+      <mat-list-item>
+      <app-single-genre [genre]="genre"></app-single-genre>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    }
+    </mat-list>
+  </div>
+  <div class="add-button">
+    <button (click)="onCreateGenre()"  mat-icon-button aria-label="">
+      <mat-icon>add_circle</mat-icon>
+    </button>
+  </div>
+
+}
+@else{
+  <div class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+}
