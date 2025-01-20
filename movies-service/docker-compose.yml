@@ -13,11 +13,10 @@ services:
         MOVIE_URL: "http://movies-movies:8080"
         GENRE_URL: "http://movies-genres:8080"
         GATEWAY_URL: "movies-gateway:8080"
-
         EUREKA_INSTANCE_INSTANCE_ID: "1"
         # SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
         EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
-
+        SECRET_KEY: ${JWT_SECRET}
     restart: always
 
   movies-eureka:
@@ -32,11 +31,9 @@ services:
     environment:
       #SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
       EUREKA_INSTANCE_INSTANCE_ID: "1"
-
       SPRING_DATASOURCE_URL: "jdbc:postgresql://movies-database:5432/movies"
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_MOVIES}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_MOVIES}
-
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
       SPRING_KAFKA: "http://kafka:9092"
     depends_on:
@@ -48,11 +45,9 @@ services:
     environment:
       #SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
       EUREKA_INSTANCE_INSTANCE_ID: "2"
-
       SPRING_DATASOURCE_URL: "jdbc:postgresql://movies-database:5432/movies"
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_MOVIES}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_MOVIES}
-
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
       SPRING_KAFKA_BOOTSTRAP_SERVERS: "http://kafka:29092"
     depends_on:
@@ -65,13 +60,10 @@ services:
         MOVIE_URL: "http://movies-movies:8080"
         #SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
         EUREKA_INSTANCE_INSTANCE_ID: "1"
-
         SPRING_DATASOURCE_URL: "jdbc:postgresql://genres-database:5432/genres"
         SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_GENRES}
         SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_GENRES}
-
         EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
-
         SPRING_KAFKA: "http://kafka:9092"
     depends_on:
         - genres-database
@@ -98,6 +90,7 @@ services:
       #SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
       EUREKA_INSTANCE_INSTANCE_ID: "1"
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
+      SECRET_KEY: ${JWT_SECRET}
 
   genres-database:
     image: postgres:13.5
