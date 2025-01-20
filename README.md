@@ -111,6 +111,10 @@ The project is built on a microservices architecture, where each microservice ha
    ```sh
    npm install
    ```
+3. Build Angular app
+   ```sh
+   npm run build
+   ``` 
 3. Add .env file based on example .env.sample 
 4. Run script for building all services
    ```sh
