@@ -12,14 +12,7 @@
   <p align="center">
     Application for managing collections of movies
     <br />
-<!--     <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    &middot;
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-    &middot;
-    <a href="https://github.com/othneildrew/Best-README-Template/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a> -->
+    <a href="#demo">View Demo</a>
   </p>
 </div>
 
@@ -35,6 +28,7 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
+    <li><a href='#demo'>Demo</a></li>
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
@@ -116,6 +110,9 @@ The project is built on a microservices architecture, where each microservice ha
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Demo
+
+[Screencast from 2025-01-20 22-49-57.webm](https://github.com/user-attachments/assets/81177039-6bff-4466-bcca-17fd9cb04ded)
 
 <!-- GETTING STARTED -->
 ## Getting Started
