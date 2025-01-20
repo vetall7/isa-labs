@@ -1,0 +1,32 @@
+<mat-dialog-content>
+  <h2 mat-dialog-title>Edit genre</h2>
+  <form [formGroup]="genreForm" (ngSubmit)="onSubmit()">
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput id="name" formControlName="name" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput id="description" formControlName="description"></textarea>
+      </mat-form-field>
+      @if (genreForm.get('description')?.invalid && genreForm.get('description')?.touched){
+        <mat-error>
+          @if (genreForm.get('description')?.errors?.['required']){
+            <div>
+              Description is required.
+            </div>
+          }
+          @if (genreForm.get('description')?.errors?.['minlength']){
+            <div>
+              Description must be at least 3 characters long.
+            </div>
+          }
+        </mat-error>
+      }
+      <mat-dialog-actions>
+        <button mat-raised-button type="submit" [disabled]="genreForm.invalid">Save</button>
+      </mat-dialog-actions>
+    </div>
+  </form>
+</mat-dialog-content>

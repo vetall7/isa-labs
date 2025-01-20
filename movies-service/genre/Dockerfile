@@ -1,0 +1,35 @@
+FROM eclipse-temurin:17.0.6_10-jre
+
+LABEL org.opencontainers.image.title="movies-service"
+LABEL org.opencontainers.image.authors="Vitalii Shapovalov"
+LABEL org.opencontainers.image.source=""
+LABEL org.opencontainers.image.url=""
+LABEL org.opencontainers.image.vendor="Vitalii Shapovalov"
+LABEL org.opencontainers.image.version="1.0.0-SNAPSHOT"
+LABEL org.opencontainers.image.description="Movies service"
+LABEL org.opencontainers.image.licenses="MIT"
+
+LABEL build_version=""
+LABEL maintainer=""
+
+ENV VERSION="0.0.1-SNAPSHOT"
+
+ENV SERVER_PORT=8080
+
+ENV SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:8081/genres
+ENV SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
+ENV SPRING_DATASOURCE_USERNAME=admin-genres
+ENV SPRING_DATASOURCE_PASSWORD=admin
+
+ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
+ENV SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+ENV SPRING_JPA_GENERATE_DDL=true
+ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+ENV MOVIE_URL=http://localhost:8081
+
+EXPOSE 8080
+
+COPY target/genre-${VERSION}.jar /opt/genre/genre.jar
+
+CMD ["java", "-jar", "/opt/genre/genre.jar"]

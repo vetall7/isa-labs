@@ -1,0 +1,161 @@
+services:
+#  movies-config:
+#    build: ./configuration
+#    restart: always
+#    environment:
+#      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
+#    volumes:
+#      - "./configurations:/var/configuration/configuration"
+#
+  movies-gateway:
+    build: ./gateway
+    environment:
+        MOVIE_URL: "http://movies-movies:8080"
+        GENRE_URL: "http://movies-genres:8080"
+        GATEWAY_URL: "movies-gateway:8080"
+        EUREKA_INSTANCE_INSTANCE_ID: "1"
+        # SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
+        SECRET_KEY: ${JWT_SECRET}
+    restart: always
+
+  movies-eureka:
+    build: ./eureka
+    restart: always
+    ports:
+      - "8090:8080"
+
+  movies-movies:
+    build: ./movie
+    restart: always
+    environment:
+      #SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://movies-database:5432/movies"
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_MOVIES}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_MOVIES}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
+      SPRING_KAFKA: "http://kafka:9092"
+    depends_on:
+      - movies-database
+
+  movies-movies-2:
+    build: ./movie
+    restart: always
+    environment:
+      #SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
+      EUREKA_INSTANCE_INSTANCE_ID: "2"
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://movies-database:5432/movies"
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_MOVIES}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_MOVIES}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "http://kafka:29092"
+    depends_on:
+        - movies-database
+
+  movies-genres:
+    build: ./genre
+    restart: always
+    environment:
+        MOVIE_URL: "http://movies-movies:8080"
+        #SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
+        EUREKA_INSTANCE_INSTANCE_ID: "1"
+        SPRING_DATASOURCE_URL: "jdbc:postgresql://genres-database:5432/genres"
+        SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER_GENRES}
+        SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD_GENRES}
+        EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
+        SPRING_KAFKA: "http://kafka:9092"
+    depends_on:
+        - genres-database
+        - kafka
+
+  movies-kafka-config:
+    build: ./apache-kafka
+    restart: always
+    environment:
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: "http://kafka:9092"
+
+  movies-frontend:
+    build: ./frontend
+    environment:
+      API_URL: http://movies-gateway:8080/api
+    restart: always
+    ports:
+      - "8082:80"
+
+  movies-users:
+    build: ./users
+    restart: always
+    environment:
+      #SPRING_CONFIG_IMPORT: "configserver:http://movies-config:8080"
+      EUREKA_INSTANCE_INSTANCE_ID: "1"
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: "http://movies-eureka:8080/eureka"
+      SECRET_KEY: ${JWT_SECRET}
+
+  genres-database:
+    image: postgres:13.5
+    restart: always
+    environment:
+      POSTGRES_DB: "genres"
+      POSTGRES_USER: ${POSTGRES_USER_GENRES}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_GENRES}
+    volumes:
+      - genres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U genres"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "5432:5432"
+
+  movies-database:
+    image: postgres:13.5
+    restart: always
+    environment:
+      POSTGRES_DB: "movies"
+      POSTGRES_USER: ${POSTGRES_USER_MOVIES}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD_MOVIES}
+    volumes:
+        - movies-data:/var/lib/postgresql/data
+    healthcheck:
+        test: ["CMD-SHELL", "pg_isready -U movies"]
+        interval: 30s
+        timeout: 10s
+        retries: 5
+    ports:
+        - "5433:5432"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.4
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.4
+    depends_on:
+      - zookeeper
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+volumes:
+  genres-data:
+    name: genres-data
+  movies-data:
+    name: movies-data

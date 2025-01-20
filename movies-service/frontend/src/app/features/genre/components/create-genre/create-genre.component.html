@@ -1,0 +1,40 @@
+<mat-dialog-content>
+  <h2 mat-dialog-title>Add new genre</h2>
+  <form [formGroup]="genreForm" (ngSubmit)="onSubmit()">
+    <div class="form">
+      <mat-form-field>
+        <mat-label>Genre Name</mat-label>
+        <input matInput id="name" formControlName="name" placeholder="Enter genre name" />
+        @if (genreForm.get('name')?.touched && genreForm.get('name')?.invalid){
+          <mat-error>
+            @if (genreForm.get('name')?.errors?.['required']){
+              <small>Name is required.</small>
+            }
+            @if (genreForm.get('name')?.errors?.['minlength']){
+              <small>Name must be at least 3 characters.</small>
+            }
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput id="description" formControlName="description" placeholder="Enter description"></textarea>
+        @if (genreForm.get('description')?.touched && genreForm.get('description')?.invalid){
+          <mat-error>
+            @if (genreForm.get('description')?.errors?.['required']){
+              <small>Description is required.</small>
+            }
+            @if (genreForm.get('description')?.errors?.['minlength']){
+              <small>Description must be at least 3 characters.</small>
+            }
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <mat-dialog-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="genreForm.invalid">Create Genre</button>
+      </mat-dialog-actions>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,48 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <!-- Logo -->
+  <div class="logo">
+    <a routerLink="/">
+      <h1>Movie App</h1>
+    </a>
+  </div>
+
+  <div class="center">
+    <div class="menu">
+      <button mat-button [matMenuTriggerFor]="menu">Menu</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Home</button>
+        <button mat-menu-item>About</button>
+        <button mat-menu-item>Contact</button>
+      </mat-menu>
+    </div>
+
+    <div class="search-bar">
+      <mat-form-field appearance="outline">
+        <mat-label>Search</mat-label>
+        <input matInput type="text" placeholder="Search...">
+        <button mat-icon-button matSuffix class="search-button">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="account">
+      @if (!this.authService.isAuthenticated()) {
+        <a routerLink="/auth/registration">
+        <mat-icon>
+          account_circle
+        </mat-icon>
+        </a>
+      }@else {
+        <a routerLink="/" (click)="onLogout()">
+        <mat-icon>
+          logout
+        </mat-icon>
+        </a>
+      }
+    </div>
+  </div>
+
+  <div class="theme-toggle">
+    <mat-slide-toggle (change)="toggleTheme()" [(ngModel)]="isDarkTheme"></mat-slide-toggle>
+  </div>
+</mat-toolbar>

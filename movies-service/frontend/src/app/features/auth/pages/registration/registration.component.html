@@ -1,0 +1,58 @@
+<div class="container">
+  <h1>Registration</h1>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Enter your name</mat-label>
+        <input
+          matInput
+          placeholder="user_name"
+          formControlName="name"
+          (blur)="updateNameError()"
+          required
+        />
+        @if (form.get('name')?.touched && form.get('name')?.invalid) {
+          <mat-error>{{nameError()}}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Enter your email</mat-label>
+        <input
+          matInput
+          placeholder="pat@example.com"
+          formControlName="email"
+          required
+          (blur)="updateEmailError()"
+        />
+        @if (form.get('email')?.touched && form.get('email')?.invalid) {
+          <mat-error>{{emailError()}}</mat-error>
+        }
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field>
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide() ? 'password' : 'text'" formControlName="password" (blur)="updatePasswordError()" required />
+        @if (form.get('password')?.touched && form.get('password')?.invalid) {
+          <mat-error>{{passwordError()}}</mat-error>
+        }
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="onHide($event)"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide()"
+        >
+          <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" class="submit-button">Register</button>
+  </form>
+  <div class="already-registered">
+    <span>Already have an account? </span>
+    <a routerLink="/auth/login">Login</a>
+  </div>
+</div>

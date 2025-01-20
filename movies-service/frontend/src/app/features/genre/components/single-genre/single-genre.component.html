@@ -1,0 +1,16 @@
+@if(genre){
+  <div class="wrapper">
+    <h2><a [routerLink]="genre.name">{{genre.name}}</a></h2>
+
+    <div class="buttons">
+      <button (click)="onDelete()" mat-fab aria-label="Example icon button with a delete icon">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+      <button (click)="onEditGenre(genre.name)" mat-fab aria-label="Example icon button with a delete icon">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+
+  </div>
+}

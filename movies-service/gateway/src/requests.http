@@ -1,0 +1,95 @@
+### Get all movies
+GET http://localhost:8083/api/movies
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzM1NTAyMzkwLCJleHAiOjE3MzU1MzgzOTAsInJvbGUiOiJBRE1JTiJ9.DQObSYSI6YcyXOG_3vi-5w1eJswW0zk9HqC5Wa6zqkQ
+
+### Get single movie
+GET http://localhost:8083/api/movies/899bcc9b-6679-4e4d-bf01-e36b3491a775
+
+### Get single movie, not existing
+GET http://localhost:8083/api/movies/6bcf71ad-3aa6-474b-858e-2027b5ce5fe
+
+### Get genre movies
+GET http://localhost:8083/api/genres/Action/movies
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuZXdVc2VyMiIsImlhdCI6MTczNTE1ODExMywiZXhwIjoxNzM1MTk0MTEzLCJyb2xlIjoiQURNSU4ifQ.p0nLQhkXuDcOD1NaHgB9POM0BoC7S8ho1VJUtsMt1xA
+
+### Get genre movies, genre does not exist
+GET  http://localhost:8083/api/genres/abcd/movies
+
+### Create new movie
+PUT http://localhost:8083/api/movies/999bcc9b-6679-4e4d-bf01-e36b3491a775
+Content-Type: application/json
+
+{
+  "title": "The Lord of the Rings: The Fellowship of the Ring",
+  "imageUrl": "https://www.imdb.com/title/tt0120737/mediaviewer/rm4269474560",
+  "year": 2001,
+  "genreName": "NewGenre",
+  "description": "A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
+}
+
+### Delete movie
+DELETE http://localhost:8083/api/movies/899bcc9b-6679-4e4d-bf01-e36b3491a775
+
+### Update movie
+PATCH http://localhost:8083/api/movies/999bcc9b-6679-4e4d-bf01-e36b3491a775
+Content-Type: application/json
+
+{
+  "description": "changed description",
+  "imageUrl": "https://changed_url"
+}
+
+### Get all genres
+GET http://localhost:8083/api/genres
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhIiwiaWF0IjoxNzM1NTAyMzkwLCJleHAiOjE3MzU1MzgzOTAsInJvbGUiOiJBRE1JTiJ9.DQObSYSI6YcyXOG_3vi-5w1eJswW0zk9HqC5Wa6zqkQ
+
+### Get genre by name
+GET http://localhost:8083/api/genres/Action
+
+### Get genre by name, not existing
+GET http://localhost:8083/api/genres/abc
+
+### Delete genre
+DELETE http://localhost:8083/api/genres/Action
+
+### Delete genre, not existing
+DELETE http://localhost:8083/api/genres/abc
+
+### Create genre
+PUT http://localhost:8083/api/genres/NewGenre
+Content-Type: application/json
+
+{
+  "description": "new genre description"
+}
+
+### Update genre
+PATCH http://localhost:8083/api/genres/NewGenre
+Content-Type: application/json
+
+{
+  "description": "updated description"
+}
+
+### create user
+PUT localhost:8083/api/users/registration/1ad35b81-ad81-4316-b41a-0280b4dd2ecd
+Content-Type: application/json
+
+{
+"name": "newUser2",
+"email": "asdfasdf2",
+"password": "asdfasdf"
+}
+
+### Get user by id
+GET localhost:8083/api/users/1ad35b81-ad81-4316-b41a-0280b4dd2ecd
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuZXdVc2VyMiIsImlhdCI6MTczNTE1NTc4MiwiZXhwIjoxNzM1MTkxNzgyLCJyb2xlIjoiVVNFUiJ9.1sJSNwzCYa3yeRzb86mylcQonUdNtIO0tD_gonVpXs8
+
+### login
+POST localhost:8083/api/users/login
+Content-Type: application/json
+
+{
+  "name": "newUser2",
+  "password": "asdfasdf"
+}
