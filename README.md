@@ -53,27 +53,42 @@
 
 ### Architecture design
 ```mermaid
-  graph TD;
+  flowchart TD;
 
-    Angular_nginx-->Api_Gateway;
-    Api_Gateway-->Eureka_Discovery_Service;
-    Movies_instance_1-->Eureka_Discovery_Service;
-    Movies_instance_2-->Eureka_Discovery_Service;
-    Eureka_Discovery_Service-->Api_Gateway;
-    Genres-->Eureka_Discovery_Service;
+    angular["Angular app on nginx with reverse proxy"]
+    gateway["Api Gateway with JWT token verification and load balancer"]
+    eureka["Eureka Discovery service"]
+    kafka["Apache Kafka"]
+    genres["Genres microservice"]
+    movies_1["Movies microservice instance 1"]
+    movies_2["Movies microservice instance 2"]
+    movies_database[(PostgreSQL movies)]
+    genres_database[(PostgreSQL genres)]
+    users["Users microservice with h2 database"]
+    config["Config server (connected to all microservices)"]
+    
 
-    Config_Server-->Api_Gateway;
+    angular --> gateway;
 
-    Config_Server-->Genres;
-    Genres-->Postgres_genres;
+    gateway --> eureka;
+    eureka --> gateway;
+
+    eureka --> genres;
+    eureka --> movies_1;
+    eureka -->  movies_2;;
+    eureka --> users;
+
+    
+
+    movies_1 --> movies_database;
+    movies_2 --> movies_database;
+
+    genres --> genres_database;
+    genres --> kafka;
+    kafka --> movies_1;
+    kafka --> movies_2;
 
 
-    Config_Server-->Movies_instance_1;
-    Movies_instance_1-->Postgres_movies;
-
-    Config_Server-->Movies_instance_2;
-
-    Movies_instance_2-->Postgres_movies;
 
 ```
 
@@ -83,11 +98,14 @@ The project is built on a microservices architecture, where each microservice ha
 
 
 ### Built With
-<p> <a href="https://angular.io"><img src="https://skillicons.dev/icons?i=angular" /></a> The front-end of the application is built with the Angular framework, utilizing NgRx Store for state management and Angular Material for theming and reusable components. </p> 
+<p> <a href="https://angular.io"><img src="https://skillicons.dev/icons?i=angular" /></a> The front-end of the application is built with the Angular framework, utilizing NgRx Store for state management and Angular Material for theming and reusable components. Besides Angular features such as Routing, Reactive Forms, Directives, Pipes, and Signals, Guards and Interceptors were employed for security purposes. </p> 
 
 <p> <a href="https://spring.io"><img src="https://skillicons.dev/icons?i=spring" /></a> Spring MVC is used to develop RESTful APIs for the application gateway and microservices. Spring Security provides robust authorization and authentication mechanisms, while Spring Cloud Netflix Eureka Server handles service discovery. </p>
 
 <p> <a href="https://docker.com"><img src="https://skillicons.dev/icons?i=docker" /></a> Docker ensures the containerization of the entire application, with each microservice running in its own container. Docker Compose manages the container network, and volumes are created for PostgreSQL data persistence to prevent data loss. </p>
+
+
+<p> <a href="https://docker.com"><img src="https://skillicons.dev/icons?i=kafka" /></a> In this project, Apache Kafka is used for communication between two microservices. The Genres microservice acts as a message producer and sends messages to two topics: 'genre-delete' and 'genre-create'. The Movie microservice serves as a consumer and listens to these topics to ensure synchronization between the movies and genres databases.</p>
 
 <p> <a href="https://www.postgresql.org/"><img src="https://skillicons.dev/icons?i=postgres" /></a> PostgreSQL database system is used for storing data </p>
 
@@ -133,9 +151,10 @@ The project is built on a microservices architecture, where each microservice ha
 
 
 - [x] Add Apache Kafka for communication between microservices
-- [x] Improve styles of the app 
+- [x] Improve styles of the app
+- [ ] Extend existed functionality 
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/vetall7/isa-labs/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -172,6 +191,7 @@ Vitalii Shapovalov - [@LinkedIn](https://www.linkedin.com/in/vitalii-shapovalov-
 * [Authorization with JWT token in Java Spring](https://medium.com/@tericcabrel/implement-jwt-authentication-in-a-spring-boot-3-application-5839e4fd8fac)
 * [Java Spring](spring.io)
 * [Angular Matherial](https://material.angular.io/)
+* [Angular Matherial Icons](https://fonts.google.com/icons?icon.set=Material+Symbols&icon.query=plus&selected=Material+Symbols+Outlined:add_circle:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%23e8eaed)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
